@@ -1,0 +1,6 @@
+
+*.pyc
+controllers/*/*.exe
+controllers/*/*.pyd
+controllers/*/*.so
+controllers/*/*.dylib

@@ -1,0 +1,10 @@
+// PLESE KEEP THE GLOBALS ONLY SPECIFIC TO WEBOTS
+#ifdef USE_WEBOTS
+
+
+
+
+
+
+
+#endif
