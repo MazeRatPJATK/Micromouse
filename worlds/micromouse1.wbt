@@ -7,8 +7,8 @@ EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/project
 WorldInfo {
 }
 Viewpoint {
-  orientation -0.5253342331295943 0.5808219797174922 0.621827766651823 2.008365304371944
-  position -0.32145558201855384 -0.9893301914138565 4.1862599923224035
+  orientation -0.01663861727079545 -0.987803783188364 -0.15481228095364943 5.660807599419336
+  position -1.890176710773009 -0.8851470190947052 1.0245184362190096
 }
 TexturedBackground {
 }
@@ -582,6 +582,20 @@ Group {
         }
       ]
       name "pillar(18)"
+      boundingObject USE LATTICE
+    }
+    Solid {
+      translation 0.99 -0.27 0.025
+      children [
+        DEF LATTICE Shape {
+          appearance PBRAppearance {
+          }
+          geometry Box {
+            size 0.012 0.012 0.05
+          }
+        }
+      ]
+      name "pillar(152)"
       boundingObject USE LATTICE
     }
     Solid {
@@ -2136,6 +2150,20 @@ Group {
         }
       ]
       name "pillar(49)"
+      boundingObject USE LATTICE
+    }
+    Solid {
+      translation -0.45 1.17 0.025
+      children [
+        DEF LATTICE Shape {
+          appearance PBRAppearance {
+          }
+          geometry Box {
+            size 0.012 0.012 0.05
+          }
+        }
+      ]
+      name "pillar(151)"
       boundingObject USE LATTICE
     }
     Solid {
