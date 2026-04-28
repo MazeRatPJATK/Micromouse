@@ -68,10 +68,15 @@
 # C++ source files
 CXX_SOURCES = \
   src/Main.cpp \
-  src/WebotsMotors.cpp \
-  src/WebotsSensors.cpp \
+  src/WebotsSpecific/WebotsMotors.cpp \
+  src/WebotsSpecific/WebotsSensors.cpp \
   src/IMotors.cpp \
-  src/ISensors.cpp
+  src/ISensors.cpp \
+  src/Algorithms/Controller.cpp \
+  src/Algorithms/Mapping.cpp \
+  src/MotionController.cpp \
+  src/globals.cpp \
+
 
 # Include directories
 INCLUDE = -I"$(CURDIR)/include"

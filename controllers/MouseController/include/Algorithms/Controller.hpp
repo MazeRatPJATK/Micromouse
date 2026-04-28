@@ -6,13 +6,21 @@
 #include "Map.hpp"
 #include "Mapping.hpp"
 #include "Solving.hpp"
+#include "../MotionController.hpp"
+#include "../Interfaces/ISensors.hpp"
 
 class Controller{
-    private:
+    public:
         Map map;
+        Controller(ISensors& sensors, MotionController& motionController);
+        void step();
+
+    private:
+        ISensors& sensors;
         Mapping mapper;
         Solving solver;
-    public:
-        void loop();
+        MotionController& motionController;
+
+
 
 };

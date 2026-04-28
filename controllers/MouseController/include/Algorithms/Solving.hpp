@@ -4,7 +4,7 @@ class Solving{
     private:
         
     public:
-        void solve();
+        void step();
 
 
 };

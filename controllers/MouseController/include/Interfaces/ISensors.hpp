@@ -17,5 +17,5 @@ public:
 
     virtual std::array<int16_t, 4> getDistanceReadings() const = 0;
     virtual IMUData getIMUReadings() const = 0;
-    virtual EncoderData getEncoderReadings() const = 0;
+    virtual std::array<float, 2>  getEncoderReadings() const = 0;
 };
