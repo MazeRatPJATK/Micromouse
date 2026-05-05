@@ -8,6 +8,7 @@
 #include "Solving.hpp"
 #include "../MotionController.hpp"
 #include "../Interfaces/ISensors.hpp"
+#include "../PositionEstimator.hpp"
 
 class Controller{
     public:
@@ -20,6 +21,7 @@ class Controller{
         Mapping mapper;
         Solving solver;
         MotionController& motionController;
+        PositionEstimator positionEstimator;
 
 
 

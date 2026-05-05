@@ -20,3 +20,7 @@ void WebotsMotors::powerEngines (float left, float right) {
         leftMotor->setVelocity(left); 
         rightMotor->setVelocity(right);
 }
+
+std::array<float, 2> WebotsMotors::getPower() const {
+    return {leftPower, rightPower};
+}

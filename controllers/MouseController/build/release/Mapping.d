@@ -1,3 +1,6 @@
-build/release/Mapping.o: src/Algorithms/Mapping.cpp \
- src/Algorithms/../../include/Algorithms/Mapping.hpp \
- src/Algorithms/../../include/Algorithms/Map.hpp
+-Wall
+-O3
+-MM
+src/Algorithms/Mapping.cpp
+-MT
+build/release/Mapping.o

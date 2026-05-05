@@ -18,7 +18,8 @@ Controller::Controller(ISensors& sensors, MotionController& motionController)
       sensors(sensors),
       mapper(map),
       solver(),
-      motionController(motionController)
+      motionController(motionController),
+      positionEstimator(sensors)
 
 {
 }
@@ -26,7 +27,7 @@ Controller::Controller(ISensors& sensors, MotionController& motionController)
 
 void Controller::step(){
 
-    
+    positionEstimator.updateAngleEstimation()
     motionController.setTargetVelocity(2.0f);
     motionController.step();
     // motors.powerEngines(3.14f,3.14f);

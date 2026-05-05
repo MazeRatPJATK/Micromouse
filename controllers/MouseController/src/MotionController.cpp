@@ -19,8 +19,15 @@ void MotionController::adjustVelocity(){
 }
 
 void MotionController::adjustAngle(){
-    motors.powerEngines(1,-1);
-    //TODO: angle adjusting to the target
+
+    float kp = 1;
+    float current = spatialData.angle;
+    float error = targetAngle - current;
+
+    float speed = kp * error;
+
+    if(targetAngle - current < 1){return;} //angleTolerance instead of 1
+   motors.powerEngines(-speed,speed);
 }
 
 void MotionController::step(){

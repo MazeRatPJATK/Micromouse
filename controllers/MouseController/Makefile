@@ -76,6 +76,7 @@ CXX_SOURCES = \
   src/Algorithms/Mapping.cpp \
   src/MotionController.cpp \
   src/globals.cpp \
+  src/PositionEstimator.cpp \
 
 
 # Include directories
