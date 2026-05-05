@@ -1,10 +1,10 @@
-#include "../include/Interfaces/IMotors.hpp"
+#include "../include/WebotsSpecific/WebotsMotors.hpp"
 #include <webots/Motor.hpp>
 #include <webots/Robot.hpp>
 
-class WebotsMotors : public IMotors {
-public:
-    WebotsMotors(webots::Robot* robot) {
+
+
+WebotsMotors::WebotsMotors(webots::Robot* robot) {
 
         leftMotor = robot->getMotor("motor1");
         rightMotor = robot->getMotor("motor2");
@@ -14,18 +14,13 @@ public:
         leftMotor->setVelocity(0.0);
         rightMotor->setVelocity(0.0);
         
-    }
+}
 
-    void  powerEngines (float left, float right) override{
+void WebotsMotors::powerEngines (float left, float right) {
         leftMotor->setVelocity(left); 
         rightMotor->setVelocity(right);
+}
 
-    }
-
-
-
-
-private:
-    webots::Motor *leftMotor ;
-    webots::Motor *rightMotor;
-};
+std::array<float, 2> WebotsMotors::getPower() const {
+    return {leftPower, rightPower};
+}
