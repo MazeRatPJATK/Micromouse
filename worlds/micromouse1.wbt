@@ -43,6 +43,9 @@ Robot {
         RotationalMotor {
           name "motor1"
         }
+        PositionSensor {
+          name "encoder1"
+        }
       ]
       endPoint Solid {
         translation 0 -0.012 0
@@ -73,6 +76,9 @@ Robot {
         RotationalMotor {
           name "motor2"
         }
+        PositionSensor {
+          name "encoder2"
+        }
       ]
       endPoint Solid {
         translation 0 0.012 0
@@ -96,7 +102,6 @@ Robot {
     }
     DistanceSensor {
       translation 0.015 -0.007 0.008
-      rotation 0 0 1 -0.785
       name "s1"
     }
     DistanceSensor {
@@ -111,14 +116,13 @@ Robot {
     }
     DistanceSensor {
       translation 0.015 0.006 0.008
-      rotation 0 0 1 0.785
       name "s4"
     }
   ]
   boundingObject USE main_body
   physics Physics {
   }
-  controller "MyEpuckController"
+  controller "MouseController"
 }
 Group {
   children [

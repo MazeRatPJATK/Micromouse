@@ -1,8 +1,9 @@
 //this is the data structure for describing the labyrinth
 //exploration methods and robot control do not belong here
-
+#pragma once
 #include <cstdint>
 #include <array>
+
 
 //north east south west
 // 00 - unknown, 01 - no wall,  10 - wall present, 11 -unsed (for now) (maybe unexplored tile?)

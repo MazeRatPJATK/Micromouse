@@ -1,2 +1,6 @@
-build/release/ISensors.o: src/ISensors.cpp \
- src/../include/Interfaces/ISensors.hpp
+-Wall
+-O3
+-MM
+src/ISensors.cpp
+-MT
+build/release/ISensors.o
