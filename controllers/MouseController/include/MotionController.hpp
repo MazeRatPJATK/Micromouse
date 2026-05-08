@@ -14,8 +14,8 @@ class MotionController{
 
     private:
         float angleTolerance = 1.0f;
-        float targetAngle;
-        float targetVelocity;
+        float targetAngle = 0.0f;
+        float targetVelocity = 0.0f;
         void adjustAngle();
         void adjustVelocity();
         IMotors& motors;
