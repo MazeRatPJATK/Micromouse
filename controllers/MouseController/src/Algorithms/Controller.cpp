@@ -27,8 +27,9 @@ Controller::Controller(ISensors& sensors, MotionController& motionController)
 
 void Controller::step(){
 
-    positionEstimator.updateAngleEstimation()
-    motionController.setTargetVelocity(2.0f);
+    positionEstimator.updateAngleEstimation();
+    motionController.setTargetAngle(2);
+
     motionController.step();
     // motors.powerEngines(3.14f,3.14f);
     // // std::array<int16_t,4> readings = {0,0,0,0};

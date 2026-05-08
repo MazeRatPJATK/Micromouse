@@ -27,7 +27,7 @@ void MotionController::adjustAngle(){
     float speed = kp * error;
 
     if(targetAngle - current < 1){return;} //angleTolerance instead of 1
-   motors.powerEngines(-speed,speed);
+    motors.powerEngines(-speed,speed);
 }
 
 void MotionController::step(){
