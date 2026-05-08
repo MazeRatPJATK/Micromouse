@@ -29,7 +29,9 @@ void Controller::step(){
 
     positionEstimator.updateAngleEstimation();
 
-    motionController.setTargetAngle(3.14);
+    // we re using set target Angle and velocity here only for debbuging purposes. you should not use it here
+    motionController.setTargetAngle(3.14159);
+    motionController.setTargetVelocity(2);
     motionController.step();
     return;
 }

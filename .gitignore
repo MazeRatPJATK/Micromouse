@@ -5,3 +5,4 @@ controllers/*/*.pyd
 controllers/*/*.so
 controllers/*/*.dylib
 controllers/MouseController/build/
+*/.vscode

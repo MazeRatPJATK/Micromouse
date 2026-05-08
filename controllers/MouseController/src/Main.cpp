@@ -31,7 +31,7 @@ int main(int argc, char **argv) {
   Controller controller = Controller(sensors, motionController);
 
   #ifdef USE_WEBOTS
-      while(robot->step(32) != 1){
+      while(robot->step(8) != 1){
 
   #else
     //hardware implementaiton

@@ -3,7 +3,7 @@
 #include "globals.hpp"
 #include <iostream>
 
-constexpr double PI = 3.1415;
+constexpr double PI = 3.141592;
 
 PositionEstimator::PositionEstimator(ISensors& sensors):sensors(sensors){};
 
