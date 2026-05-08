@@ -27,7 +27,7 @@ Controller::Controller(ISensors& sensors, MotionController& motionController)
 
 void Controller::step(){
 
-    positionEstimator.updateAngleEstimation()
+    positionEstimator.updateAngleEstimation();
     motionController.setTargetVelocity(2.0f);
     motionController.step();
     // motors.powerEngines(3.14f,3.14f);
