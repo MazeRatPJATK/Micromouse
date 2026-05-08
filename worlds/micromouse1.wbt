@@ -7,8 +7,8 @@ EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/project
 WorldInfo {
 }
 Viewpoint {
-  orientation -0.01663861727079545 -0.987803783188364 -0.15481228095364943 5.660807599419336
-  position -1.890176710773009 -0.8851470190947052 1.0245184362190096
+  orientation -0.5921413840881676 0.5921412552253732 0.5465686737366754 2.141187654284333
+  position 0.09976288143656929 -0.1561621784010505 0.6376149982566407
 }
 TexturedBackground {
 }
@@ -19,8 +19,8 @@ RectangleArena {
   floorTileSize 0.36 0.36
 }
 Robot {
-  translation 1.224733379632265e-12 -0.14000017411093213 0.007995764839331293
-  rotation 0.9999999999784916 6.558705528337328e-06 -2.2848135993337081e-10 2.176340137649798e-05
+  translation 0.00316901 -0.179492 0.0214095
+  rotation 0 0 1 -0.0013653071795864946
   children [
     DEF main_body Pose {
       children [
@@ -28,14 +28,14 @@ Robot {
           appearance PBRAppearance {
           }
           geometry Box {
-            size 0.03 0.02 0.015
+            size 0.11 0.12 0.015
           }
         }
       ]
     }
     HingeJoint {
       jointParameters HingeJointParameters {
-        position 6.230373958800685e-11
+        position 17.146201763101548
         axis 0 1 0
         anchor 0 -0.012 0
       }
@@ -48,16 +48,16 @@ Robot {
         }
       ]
       endPoint Solid {
-        translation 0 -0.012 0
-        rotation 1 9.353006023543364e-11 -9.345560938201028e-11 1.57
+        translation 0 -0.065 0
+        rotation -0.5262227330762428 0.6015253322947125 -0.6010465121781383 4.111059255337187
         children [
           DEF wheel Shape {
             appearance PBRAppearance {
               baseColor 1 0 0
             }
             geometry Cylinder {
-              height 0.004
-              radius 0.008
+              height 0.00987
+              radius 0.0215
             }
           }
         ]
@@ -68,7 +68,7 @@ Robot {
     }
     HingeJoint {
       jointParameters HingeJointParameters {
-        position 6.236251420562091e-11
+        position 17.14620175059044
         axis 0 1 0
         anchor 0 0.012 0
       }
@@ -81,16 +81,16 @@ Robot {
         }
       ]
       endPoint Solid {
-        translation 0 0.012 0
-        rotation 1 9.361829239552722e-11 -9.354381057638102e-11 1.57
+        translation 0 0.065 0
+        rotation -0.5262227282500893 0.6015253344073865 -0.6010465142891307 4.111059247774668
         children [
           DEF wheel Shape {
             appearance PBRAppearance {
               baseColor 1 0 0
             }
             geometry Cylinder {
-              height 0.004
-              radius 0.008
+              height 0.00987
+              radius 0.0215
             }
           }
         ]
@@ -101,26 +101,29 @@ Robot {
       }
     }
     DistanceSensor {
-      translation 0.015 -0.007 0.008
+      translation 0.05 -0.015 0.008
       name "s1"
     }
     DistanceSensor {
-      translation 0.015 -0.003 0.008
+      translation 0.05 -0.005 0.008
       rotation 0 0 1 -0.785
       name "s2"
     }
     DistanceSensor {
-      translation 0.015 0.003 0.008
+      translation 0.05 0.005 0.008
       rotation 0 0 1 0.785
       name "s3"
     }
     DistanceSensor {
-      translation 0.015 0.006 0.008
+      translation 0.05 0.015 0.008
       name "s4"
     }
   ]
   boundingObject USE main_body
   physics Physics {
+    centerOfMass [
+      0 0 0
+    ]
   }
   controller "MouseController"
 }
