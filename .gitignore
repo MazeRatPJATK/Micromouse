@@ -4,3 +4,4 @@ controllers/*/*.exe
 controllers/*/*.pyd
 controllers/*/*.so
 controllers/*/*.dylib
+controllers/MouseController/build/
