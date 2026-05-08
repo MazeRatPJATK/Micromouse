@@ -6,8 +6,8 @@
 
 WebotsMotors::WebotsMotors(webots::Robot* robot) {
 
-        leftMotor = robot->getMotor("motor1");
-        rightMotor = robot->getMotor("motor2");
+        leftMotor = robot->getMotor("motor2");
+        rightMotor = robot->getMotor("motor1");
 
         leftMotor->setPosition(INFINITY);
         rightMotor->setPosition(INFINITY);

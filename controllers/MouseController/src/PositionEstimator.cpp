@@ -3,7 +3,7 @@
 #include "globals.hpp"
 #include <iostream>
 
-constexpr double PI = 3.14;
+constexpr double PI = 3.1415;
 
 PositionEstimator::PositionEstimator(ISensors& sensors):sensors(sensors){};
 
@@ -16,14 +16,10 @@ void PositionEstimator::updateAngleEstimation(){
         int n = (int)(angle / (2*PI));
         angle = angle + ((2*PI)*n);
     }
+
     if( angle < -(2*PI)){
         int n = (int)(angle / (2*PI));
-         std::cout << "n: " <<  n << std::endl;
-                  std::cout << "angle before: " <<  angle << std::endl;
-
         angle = angle - ((2*PI)*n);
-                 std::cout << "angle after: " <<  angle << std::endl;
-
     }
     spatialData.angle = angle;
    
