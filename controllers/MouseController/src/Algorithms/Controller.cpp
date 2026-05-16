@@ -15,10 +15,10 @@
 
 Controller::Controller(ISensors& sensors, MotionController& motionController)
     : map(),
-      sensors(sensors),
-      mapper(map),
-      solver(),
       motionController(motionController),
+      sensors(sensors),
+      mapper(map,motionController),
+      solver(),
       positionEstimator(sensors)
 
 {
@@ -28,10 +28,16 @@ Controller::Controller(ISensors& sensors, MotionController& motionController)
 void Controller::step(){
 
     positionEstimator.updateAngleEstimation();
+    positionEstimator.updateCoordinateEstimation();
 
     // we re using set target Angle and velocity here only for debbuging purposes. you should not use it here
-    motionController.setTargetAngle(3.14159);
-    motionController.setTargetVelocity(2);
+   
+    mapper.step();
+    
+
+
+
+
     motionController.step();
     return;
 }

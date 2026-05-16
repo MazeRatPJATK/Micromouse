@@ -17,10 +17,10 @@ class Controller{
         void step();
 
     private:
+        MotionController& motionController;
         ISensors& sensors;
         Mapping mapper;
         Solving solver;
-        MotionController& motionController;
         PositionEstimator positionEstimator;
 
 

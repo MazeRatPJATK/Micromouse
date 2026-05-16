@@ -1,5 +1,7 @@
 #include "../include/WebotsSpecific/WebotsSensors.hpp"
 
+
+
 WebotsSensors::WebotsSensors(webots::Robot* robot) {
     distanceSensors[0] = robot->getDistanceSensor("s1");
     distanceSensors[1] = robot->getDistanceSensor("s2");
