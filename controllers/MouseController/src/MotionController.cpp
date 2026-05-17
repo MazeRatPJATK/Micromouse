@@ -13,7 +13,7 @@ void MotionController::setTargetAngle(float angle){
 }
 
 void MotionController::adjustVelocity(){
-    motors.powerEngines(targetVelocity,targetVelocity);
+    motors.powerEngines(targetVelocity,targetVelocity); //TODO: actually make the robot try and reach the target velocity
     //TODO velocity adjusting
 }
 

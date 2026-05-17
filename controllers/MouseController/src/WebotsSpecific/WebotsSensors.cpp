@@ -20,12 +20,12 @@ WebotsSensors::WebotsSensors(webots::Robot* robot) {
     positionSensors[1]->enable(32);
 }
 
-std::array<int16_t, 4> WebotsSensors::getDistanceReadings() const {
+std::array<float, 4> WebotsSensors::getDistanceReadings() const {
     return {
-        static_cast<int16_t>(distanceSensors[0]->getValue()),
-        static_cast<int16_t>(distanceSensors[1]->getValue()),
-        static_cast<int16_t>(distanceSensors[2]->getValue()),
-        static_cast<int16_t>(distanceSensors[3]->getValue())
+        static_cast<float>(distanceSensors[0]->getValue()),
+        static_cast<float>(distanceSensors[1]->getValue()),
+        static_cast<float>(distanceSensors[2]->getValue()),
+        static_cast<float>(distanceSensors[3]->getValue())
     };
 }
 

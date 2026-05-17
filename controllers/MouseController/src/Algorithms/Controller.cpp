@@ -17,7 +17,7 @@ Controller::Controller(ISensors& sensors, MotionController& motionController)
     : map(),
       motionController(motionController),
       sensors(sensors),
-      mapper(map,motionController),
+      mapper(map,motionController,sensors),
       solver(),
       positionEstimator(sensors)
 

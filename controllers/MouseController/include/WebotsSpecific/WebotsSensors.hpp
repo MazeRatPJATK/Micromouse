@@ -10,7 +10,7 @@ class WebotsSensors : public ISensors {
 public:
     WebotsSensors(webots::Robot* robot);
 
-    std::array<int16_t, 4> getDistanceReadings() const override;
+    std::array<float, 4> getDistanceReadings() const override;
 
     IMUData getIMUReadings() const override;
     std::array<float, 2>  getEncoderReadings() const override;

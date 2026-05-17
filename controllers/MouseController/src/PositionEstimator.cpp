@@ -18,18 +18,14 @@ void PositionEstimator::updateCoordinateEstimation(){
 
     float distance = 0;
     if(!rotating){
-        distance =  encoderSum - previousEncoderSum;
+        distance =  (encoderSum - previousEncoderSum)/2;
     }
-
-      
-
-   
 
     spatialData.x += cos(spatialData.angle) * distance;
     spatialData.y += sin(spatialData.angle) * distance;
     
-    std::cout<< "x   :" << spatialData.x << std::endl;
-    std::cout<< "y   :" << spatialData.y << std::endl;
+    // std::cout<< "x   :" << spatialData.x << std::endl;
+    // std::cout<< "y   :" << spatialData.y << std::endl;
     
 }
 
@@ -53,3 +49,4 @@ void PositionEstimator::updateAngleEstimation(){
    
     // std::cout << angle << std::endl;
 }
+

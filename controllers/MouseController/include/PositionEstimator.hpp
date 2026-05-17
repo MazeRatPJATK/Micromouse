@@ -1,6 +1,7 @@
 #pragma once
 #include "./Interfaces/ISensors.hpp"
 #include "globals.hpp"
+#include "array"
 
 class PositionEstimator{
     private:

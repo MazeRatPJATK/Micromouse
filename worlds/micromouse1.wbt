@@ -7,8 +7,8 @@ EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/project
 WorldInfo {
 }
 Viewpoint {
-  orientation -0.581276239314609 0.5937614130523626 0.5563859433687439 2.1079733897995023
-  position 0.03314293247830277 0.3007923950899991 6.135922129992516
+  orientation -0.04720166472559877 0.047738411358512416 0.9977439786478781 1.5618077421186982
+  position 0.03811892158166492 -0.5883564714011429 0.05999518423535307
 }
 TexturedBackground {
 }
@@ -22,6 +22,16 @@ Robot {
   translation 0.00316901 -0.179492 0.0214095
   rotation 0 0 1 -0.0013653071795864946
   children [
+    DEF stablizer Pose {
+      translation 0.04 0.01 -0.01
+      children [
+        Shape {
+          geometry Box {
+            size 0.01 0.01 0.03
+          }
+        }
+      ]
+    }
     DEF main_body Pose {
       children [
         Shape {
@@ -103,20 +113,36 @@ Robot {
     DistanceSensor {
       translation 0.05 -0.015 0.008
       name "s1"
+      lookupTable [
+        0 0 0
+        0.2 1000 0
+      ]
     }
     DistanceSensor {
       translation 0.05 -0.005 0.008
       rotation 0 0 1 -0.785
       name "s2"
+      lookupTable [
+        0 0 0
+        0.2 1000 0
+      ]
     }
     DistanceSensor {
       translation 0.05 0.005 0.008
       rotation 0 0 1 0.785
       name "s3"
+      lookupTable [
+        0 0 0
+        0.2 1000 0
+      ]
     }
     DistanceSensor {
       translation 0.05 0.015 0.008
       name "s4"
+      lookupTable [
+        0 0 0
+        0.2 1000 0
+      ]
     }
   ]
   boundingObject USE main_body
