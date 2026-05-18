@@ -7,8 +7,8 @@ EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/project
 WorldInfo {
 }
 Viewpoint {
-  orientation -0.04720166472559877 0.047738411358512416 0.9977439786478781 1.5618077421186982
-  position 0.03811892158166492 -0.5883564714011429 0.05999518423535307
+  orientation -0.35093047362149987 0.4210883712403071 0.8363805272063518 1.567221388755468
+  position -0.09788163306032267 -0.7004007065404638 0.4953851919766845
 }
 TexturedBackground {
 }
@@ -22,24 +22,39 @@ Robot {
   translation 0.00316901 -0.179492 0.0214095
   rotation 0 0 1 -0.0013653071795864946
   children [
-    DEF stablizer Pose {
-      translation 0.04 0.01 -0.01
+    DEF body Group {
       children [
-        Shape {
-          geometry Box {
-            size 0.01 0.01 0.03
-          }
+        DEF stablizer Pose {
+          translation 0.04 0.01 -0.01
+          children [
+            Shape {
+              geometry DEF stablizer_shape Box {
+                size 0.01 0.01 0.018
+              }
+            }
+          ]
         }
-      ]
-    }
-    DEF main_body Pose {
-      children [
-        Shape {
-          appearance PBRAppearance {
-          }
-          geometry Box {
-            size 0.11 0.12 0.015
-          }
+        Pose {
+          translation -0.03 -0.01 -0.01
+          children [
+            Shape {
+              appearance PBRAppearance {
+              }
+              geometry USE stablizer_shape
+            }
+          ]
+        }
+        USE stablizer
+        DEF main_body Pose {
+          children [
+            Shape {
+              appearance PBRAppearance {
+              }
+              geometry Box {
+                size 0.11 0.12 0.015
+              }
+            }
+          ]
         }
       ]
     }
@@ -58,8 +73,8 @@ Robot {
         }
       ]
       endPoint Solid {
-        translation 0 -0.042 0
-        rotation -0.5262227330762428 0.6015253322947125 -0.6010465121781383 4.111059255337187
+        translation 1.8383105186777088e-06 -0.041999999898180373 -4.556907535164107e-07
+        rotation 0.5262227041775954 -0.6015253717387804 0.6010464980037242 2.1721259719750026
         children [
           DEF wheel Shape {
             appearance PBRAppearance {
@@ -91,8 +106,8 @@ Robot {
         }
       ]
       endPoint Solid {
-        translation 0 0.042 0
-        rotation -0.5262227282500893 0.6015253344073865 -0.6010465142891307 4.111059247774668
+        translation 1.7012304087363036e-06 0.04199999987219588 -7.221962145422667e-07
+        rotation 0.5262226708072238 -0.6015253922000671 0.601046506742255 2.172125900649661
         children [
           DEF wheel Shape {
             appearance PBRAppearance {
@@ -145,11 +160,8 @@ Robot {
       ]
     }
   ]
-  boundingObject USE main_body
+  boundingObject USE body
   physics Physics {
-    centerOfMass [
-      0 0 0
-    ]
   }
   controller "MouseController"
 }
