@@ -2,7 +2,8 @@
 #include "../../include/Algorithms/Map.hpp"
 
 void Map::putWalls(int x, int y, WallState north, WallState east, WallState south, WallState west){
-
+    x += 6;
+    y += 6;
     // 00 - unknown, 01 - no wall,  10 - wall present, 11 -unsed (for now) (maybe unexplored tile?)
 
     uint8_t tile  = maze[x][y];

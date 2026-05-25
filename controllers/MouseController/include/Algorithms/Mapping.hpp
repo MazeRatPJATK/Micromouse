@@ -17,8 +17,11 @@ private:
         MotionController& motionController;
         ISensors& sensors;
         std::array<int, 2> previousGridCoordinates = {0,0};
+        float previousAngle = 0.0f;
 
         void updateMap();
+        void rotateWallsToWorldFrame(std::array<WallState,4>& walls);
+        void mapForwardCell(const std::array<int,2>& currentCell);
         std::array<int,2> translateToGridCoordinate(float x, float y);
 
         void rightHandAlgorithm();

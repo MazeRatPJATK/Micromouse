@@ -10,9 +10,9 @@
 typedef uint8_t Tile;
 
 enum WallState{
-    PRESENT,
-    ABSENT,
-    UNKNOWN
+    PRESENT = 'p',
+    ABSENT = 'a',
+    UNKNOWN = 'u'
 };
 
 class Map{

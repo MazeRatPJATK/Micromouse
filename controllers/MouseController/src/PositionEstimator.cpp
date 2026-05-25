@@ -3,6 +3,7 @@
 #include "globals.hpp"
 #include <iostream>
 #include "cmath"
+#include "../include/util/Util.hpp"
 
 constexpr double PI = 3.141592;
 
@@ -21,32 +22,25 @@ void PositionEstimator::updateCoordinateEstimation(){
         distance =  (encoderSum - previousEncoderSum)/2;
     }
 
-    spatialData.x += cos(spatialData.angle) * distance;
-    spatialData.y += sin(spatialData.angle) * distance;
-    
-    // std::cout<< "x   :" << spatialData.x << std::endl;
-    // std::cout<< "y   :" << spatialData.y << std::endl;
-    
+    spatialData.x += sin(spatialData.angle) * distance;
+    spatialData.y += cos(spatialData.angle) * distance;
+       
 }
 
 
 
 
-void PositionEstimator::updateAngleEstimation(){
-    std::array<float,2> encoderReadings = sensors.getEncoderReadings();
-    
-    float angle =   ((encoderReadings[0]/(2*PI))*wheelCircumference - (encoderReadings[1]/(2*PI))*wheelCircumference) / distanceBetweenWheels; //im not sure of this equation
-    if(angle > (2*PI)){
-        int n = (int)(angle / (2*PI));
-        angle = angle + ((2*PI)*n);
-    }
 
-    if( angle < -(2*PI)){
-        int n = (int)(angle / (2*PI));
-        angle = angle - ((2*PI)*n);
-    }
+
+void PositionEstimator::updateAngleEstimation() {
+    auto enc = sensors.getEncoderReadings();
+    float leftDistance  = (enc[0] / (2 * PI)) * wheelCircumference;
+    float rightDistance = (enc[1] / (2 * PI)) * wheelCircumference;
+
+    float angle = (rightDistance - leftDistance) / distanceBetweenWheels;
     spatialData.angle = angle;
-   
-    // std::cout << angle << std::endl;
+    spatialData.angle = normalizeAngle(spatialData.angle);
 }
+
+
 

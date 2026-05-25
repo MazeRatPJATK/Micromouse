@@ -1,6 +1,11 @@
 #include "../include/MotionController.hpp"
 #include "SpatialData.hpp"
 #include "../include/globals.hpp"
+#include <iostream>
+#include "../include/util/Util.hpp"
+
+
+
 
 MotionController::MotionController(IMotors& motors): motors(motors){}
 
@@ -9,7 +14,7 @@ void MotionController::setTargetVelocity(float velocity){
 }
 
 void MotionController::setTargetAngle(float angle){
-    targetAngle = angle;
+    targetAngle = normalizeAngle(angle);
 }
 
 void MotionController::adjustVelocity(){
@@ -20,20 +25,22 @@ void MotionController::adjustVelocity(){
 void MotionController::adjustAngle(){
 
     rotating = true;
-    float kp = 1;
     float current = spatialData.angle;
-    float error = targetAngle - current;
-
-    float speed = kp * error;
-    if(speed < 1){speed = 1;}
-
-    if(targetAngle - current < 0.01){rotating = false; return;} //instead of 0.1 there should be angleTolerance in the future
-    motors.powerEngines(-speed,speed);
+   
+    if((targetAngle > current) && ((targetAngle - current) > 0.01)){
+        motors.powerEngines(1,-1);
+    } 
+    else if((current > targetAngle) && ((current - targetAngle) > 0.01)){
+        motors.powerEngines(-1,1);       
+    }
+    else{
+        rotating = false;
+    }
+    return;
+    
 }
 
 void MotionController::step(){
-        float currentAngle = spatialData.angle;
-
         adjustVelocity();
         adjustAngle();  
 

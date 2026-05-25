@@ -5,10 +5,11 @@ EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/project
 EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/floors/protos/RectangleArena.proto"
 
 WorldInfo {
+  basicTimeStep 8
 }
 Viewpoint {
-  orientation -0.35093047362149987 0.4210883712403071 0.8363805272063518 1.567221388755468
-  position -0.09788163306032267 -0.7004007065404638 0.4953851919766845
+  orientation -0.42317388808738726 0.42796264922789434 0.798606180358533 1.7828308693091808
+  position 0.25423071030065536 -0.8146334597638216 0.9475068240895966
 }
 TexturedBackground {
 }
@@ -25,7 +26,7 @@ Robot {
     DEF body Group {
       children [
         DEF stablizer Pose {
-          translation 0.04 0.01 -0.01
+          translation 0.04 0 -0.01
           children [
             Shape {
               geometry DEF stablizer_shape Box {
@@ -35,7 +36,7 @@ Robot {
           ]
         }
         Pose {
-          translation -0.03 -0.01 -0.01
+          translation -0.03 0 -0.01
           children [
             Shape {
               appearance PBRAppearance {
@@ -73,7 +74,7 @@ Robot {
         }
       ]
       endPoint Solid {
-        translation 1.8383105186777088e-06 -0.041999999898180373 -4.556907535164107e-07
+        translation 1.8383105186777124e-06 -0.041999999898180373 -4.556907535164127e-07
         rotation 0.5262227041775954 -0.6015253717387804 0.6010464980037242 2.1721259719750026
         children [
           DEF wheel Shape {
@@ -106,8 +107,8 @@ Robot {
         }
       ]
       endPoint Solid {
-        translation 1.7012304087363036e-06 0.04199999987219588 -7.221962145422667e-07
-        rotation 0.5262226708072238 -0.6015253922000671 0.601046506742255 2.172125900649661
+        translation 1.7012304087363032e-06 0.04199999987219588 -7.221962145422665e-07
+        rotation 0.5262226708072235 -0.6015253922000672 0.601046506742255 2.172125900649662
         children [
           DEF wheel Shape {
             appearance PBRAppearance {

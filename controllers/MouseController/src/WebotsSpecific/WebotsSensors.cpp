@@ -8,16 +8,16 @@ WebotsSensors::WebotsSensors(webots::Robot* robot) {
     distanceSensors[2] = robot->getDistanceSensor("s3");
     distanceSensors[3] = robot->getDistanceSensor("s4");
 
-    distanceSensors[0]->enable(32);
-    distanceSensors[1]->enable(32);
-    distanceSensors[2]->enable(32);
-    distanceSensors[3]->enable(32);
+    distanceSensors[0]->enable(8);
+    distanceSensors[1]->enable(8);
+    distanceSensors[2]->enable(8);
+    distanceSensors[3]->enable(8);
 
 
     positionSensors[0] = robot->getPositionSensor("encoder1");
     positionSensors[1] = robot->getPositionSensor("encoder2");
-    positionSensors[0]->enable(32);
-    positionSensors[1]->enable(32);
+    positionSensors[0]->enable(8);
+    positionSensors[1]->enable(8);
 }
 
 std::array<float, 4> WebotsSensors::getDistanceReadings() const {
