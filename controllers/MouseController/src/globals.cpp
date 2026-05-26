@@ -1,6 +1,6 @@
 #include "globals.hpp"
 
-SpatialData spatialData = {0,0,0,0};
-float wheelCircumference = 13.50884;
-float distanceBetweenWheels = 9.38; 
+SpatialData spatialData = {0.0f, 0.0f, 0.0f, 0.0f};
+float wheelCircumference = 13.50884f;
+float distanceBetweenWheels = 8.4f; 
 bool rotating = false;

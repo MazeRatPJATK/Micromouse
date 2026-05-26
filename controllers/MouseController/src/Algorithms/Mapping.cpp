@@ -14,15 +14,16 @@ constexpr float WALL_DETECTION_THRESHOLD_MM = 900.0f;
 
 void Mapping::step(){
     motionController.setTargetVelocity(2);
-    if(spatialData.y > 36   && spatialData.y < 38 && spatialData.x >= 0){
-         motionController.setTargetAngle(-3.14);
+    
+
+
+    if(spatialData.y > 36   && spatialData.y < 38 && spatialData.x >= -1 ){
+         motionController.setTargetAngle(-1.57);
     } 
-    // if(spatialData.y > 36   && spatialData.y < 38 && spatialData.x < -17 && spatialData.x > -19){
-    //      motionController.setTargetAngle(0);
-    // } 
-    // else{
-        // motionController.setTargetAngle(-3.14);
-    // }updateMap
+    else if(spatialData.y > 32   && spatialData.y < 38 && spatialData.x < -16 && spatialData.x > -19){
+         motionController.setTargetAngle(0);
+    } 
+    std::cout << "X: " << spatialData.x << " \nY: " << spatialData.y << "\n angle: " << spatialData.angle << std::endl; 
     updateMap();
     // rightHandAlgorithm();
 }
@@ -53,10 +54,8 @@ void Mapping::updateMap(){
     float distanceFromCenterX = currentGridCoordinates[0]*18 - spatialData.x;
     float distanceFromCenterY = currentGridCoordinates[1]*18 - spatialData.y;
 
-    // std::cout << spatialData.angle << std::endl;
-    // std::cout << "X: "<< distanceFromCenterX << " Y: " << distanceFromCenterY << std::endl;
+
     bool closeToEdge = (distanceFromCenterX < 0.0f) || (distanceFromCenterY <  0.0f);
-    // std::cout << closeToEdge << std::endl;
     
     bool movedToNewCell = (previousGridCoordinates != currentGridCoordinates);
     bool turned90Deg    = (std::abs(spatialData.angle - previousAngle) > QUADRANT_ANGLE_RAD);
@@ -100,6 +99,8 @@ void Mapping::mapForwardCell(const std::array<int,2>& currentCell){
         int forwardSquareX = currentCell[0] + static_cast<int>(std::round(sin(spatialData.angle)));
         int forwardSquareY = currentCell[1] + static_cast<int>(std::round(cos(spatialData.angle)));
         map.putWalls(forwardSquareX ,forwardSquareY, worldWalls[0], worldWalls[1],worldWalls[2], worldWalls[3] );
+
+        
 
         std::cout << "Angle: " << spatialData.angle << "\n"
                   << "Updating walls at X: " << forwardSquareX << " Y: " << forwardSquareY << "\n"

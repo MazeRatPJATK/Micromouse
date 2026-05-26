@@ -6,10 +6,18 @@ EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/project
 
 WorldInfo {
   basicTimeStep 8
+  contactProperties [
+    ContactProperties {
+      material1 "caster"
+      coulombFriction [
+        0
+      ]
+    }
+  ]
 }
 Viewpoint {
-  orientation -0.42317388808738726 0.42796264922789434 0.798606180358533 1.7828308693091808
-  position 0.25423071030065536 -0.8146334597638216 0.9475068240895966
+  orientation -0.3670778115212627 0.44409230165930813 0.8173346364223766 1.6690727211192962
+  position 0.010886926747723784 -0.3475592296545139 0.2166743317878429
 }
 TexturedBackground {
 }
@@ -23,29 +31,46 @@ Robot {
   translation 0.00316901 -0.179492 0.0214095
   rotation 0 0 1 -0.0013653071795864946
   children [
+    DEF caster_wheel Solid {
+      translation 0.04 0 -0.01
+      children [
+        Shape {
+          geometry Sphere {
+            radius 0.01
+          }
+        }
+      ]
+      name "solid(2)"
+      contactMaterial "caster"
+      boundingObject Sphere {
+        radius 0.01
+      }
+      physics Physics {
+        density -1
+        mass 0.01
+      }
+    }
+    Solid {
+      translation -0.04 0 -0.01
+      children [
+        Shape {
+          geometry Sphere {
+            radius 0.01
+          }
+        }
+      ]
+      name "solid(3)"
+      contactMaterial "caster"
+      boundingObject Sphere {
+        radius 0.01
+      }
+      physics Physics {
+        density -1
+        mass 0.01
+      }
+    }
     DEF body Group {
       children [
-        DEF stablizer Pose {
-          translation 0.04 0 -0.01
-          children [
-            Shape {
-              geometry DEF stablizer_shape Box {
-                size 0.01 0.01 0.018
-              }
-            }
-          ]
-        }
-        Pose {
-          translation -0.03 0 -0.01
-          children [
-            Shape {
-              appearance PBRAppearance {
-              }
-              geometry USE stablizer_shape
-            }
-          ]
-        }
-        USE stablizer
         DEF main_body Pose {
           children [
             Shape {
@@ -74,8 +99,8 @@ Robot {
         }
       ]
       endPoint Solid {
-        translation 1.8383105186777124e-06 -0.041999999898180373 -4.556907535164127e-07
-        rotation 0.5262227041775954 -0.6015253717387804 0.6010464980037242 2.1721259719750026
+        translation 2.3330934911985928e-06 -0.042000338707427115 -5.769632220086892e-07
+        rotation 0.5262196017814098 -0.6015227626333054 0.601051825332068 2.1721173979209545
         children [
           DEF wheel Shape {
             appearance PBRAppearance {
@@ -84,6 +109,7 @@ Robot {
             geometry Cylinder {
               height 0.00987
               radius 0.0215
+              subdivision 72
             }
           }
         ]
@@ -107,8 +133,8 @@ Robot {
         }
       ]
       endPoint Solid {
-        translation 1.7012304087363032e-06 0.04199999987219588 -7.221962145422665e-07
-        rotation 0.5262226708072235 -0.6015253922000672 0.601046506742255 2.172125900649662
+        translation 9.564346566407717e-07 0.04199958783798655 -6.516653122569696e-07
+        rotation 0.5262238154037431 -0.601519259744525 0.6010516419229933 2.172129064096698
         children [
           DEF wheel Shape {
             appearance PBRAppearance {
@@ -117,6 +143,7 @@ Robot {
             geometry Cylinder {
               height 0.00987
               radius 0.0215
+              subdivision 72
             }
           }
         ]

@@ -1,10 +1,9 @@
 #include "../include/MotionController.hpp"
 #include "SpatialData.hpp"
 #include "../include/globals.hpp"
-#include <iostream>
 #include "../include/util/Util.hpp"
 
-
+constexpr float PI = 3.1415f;
 
 
 MotionController::MotionController(IMotors& motors): motors(motors){}
@@ -26,11 +25,14 @@ void MotionController::adjustAngle(){
 
     rotating = true;
     float current = spatialData.angle;
+
+    float d = normalizeAngle(targetAngle - current);
+    
    
-    if((targetAngle > current) && ((targetAngle - current) > 0.01)){
+    if(d >= 0.005){
         motors.powerEngines(1,-1);
-    } 
-    else if((current > targetAngle) && ((current - targetAngle) > 0.01)){
+    }
+    else if(d <= -0.005){
         motors.powerEngines(-1,1);       
     }
     else{
@@ -39,6 +41,11 @@ void MotionController::adjustAngle(){
     return;
     
 }
+
+
+
+
+
 
 void MotionController::step(){
         adjustVelocity();
