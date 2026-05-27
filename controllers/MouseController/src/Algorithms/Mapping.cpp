@@ -12,18 +12,32 @@ constexpr float GRID_CELL_SIZE = 18.0f;
 constexpr float QUADRANT_ANGLE_RAD = 1.56f; // ~90 degrees in radians
 constexpr float WALL_DETECTION_THRESHOLD_MM = 900.0f;
 
+
+bool flag = false;
 void Mapping::step(){
-    motionController.setTargetVelocity(2);
+    motionController.setTargetVelocity(4);
     
+    // if(flag == false){
+    //     motionController.setTargetAngle(1.59);
+    // }
+    // if(spatialData.angle > 1.57 ){
+    //     flag = true;
+    //     motionController.setTargetAngle(0);
+    // }
+
+
+
+
+
 
 
     if(spatialData.y > 36   && spatialData.y < 38 && spatialData.x >= -1 ){
          motionController.setTargetAngle(-1.57);
     } 
-    else if(spatialData.y > 32   && spatialData.y < 38 && spatialData.x < -16 && spatialData.x > -19){
+    else if(spatialData.y > 34   && spatialData.y < 38 && spatialData.x < -17.5 && spatialData.x > -19){
          motionController.setTargetAngle(0);
+         
     } 
-    std::cout << "X: " << spatialData.x << " \nY: " << spatialData.y << "\n angle: " << spatialData.angle << std::endl; 
     updateMap();
     // rightHandAlgorithm();
 }

@@ -12,7 +12,6 @@ PositionEstimator::PositionEstimator(ISensors& sensors):sensors(sensors){};
 void PositionEstimator::updateCoordinateEstimation(){
     previousEncoderReadings = encoderReadings;
     encoderReadings = sensors.getEncoderReadings();
-
     float encoderSum = encoderReadings[0]/(2*PI)*wheelCircumference  + (encoderReadings[1]/(2*PI))*wheelCircumference;
     float previousEncoderSum = previousEncoderReadings[0]/(2*PI)*wheelCircumference  + (previousEncoderReadings[1]/(2*PI))*wheelCircumference;
 
@@ -37,10 +36,28 @@ void PositionEstimator::updateAngleEstimation() {
     float leftDistance  = (enc[0] / (2 * PI)) * wheelCircumference;
     float rightDistance = (enc[1] / (2 * PI)) * wheelCircumference;
 
+    std::cout << enc[1] << " " << enc[0] << std::endl;
+
     float angle = (rightDistance - leftDistance) / distanceBetweenWheels;
     spatialData.angle = angle;
     spatialData.angle = normalizeAngle(spatialData.angle);
 }
+    
 
 
+// void PositionEstimator::updateAngleEstimation() {
+//     auto enc = sensors.getEncoderReadings();
 
+//     double leftDistance  = (enc[0] / (2 * PI)) * wheelCircumference;
+//     double rightDistance = (enc[1] / (2 * PI)) * wheelCircumference;
+
+//     double deltaLeft  = leftDistance  - prevLeftDistance;
+//     double deltaRight = rightDistance - prevRightDistance;
+
+//     prevLeftDistance  = leftDistance;
+//     prevRightDistance = rightDistance;
+
+//     double deltaAngle = (deltaRight - deltaLeft) / distanceBetweenWheels;
+
+//     spatialData.angle = normalizeAngle(spatialData.angle + deltaAngle);
+// }
