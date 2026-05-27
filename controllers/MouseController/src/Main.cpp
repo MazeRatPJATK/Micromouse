@@ -21,11 +21,28 @@ int main(int argc, char **argv) {
     //hardware implementaiton
   #endif
     
+<<<<<<< Updated upstream
     motors.powerEngines(3.14f,3.14f);
     std::array<int16_t,4> readings = {0,0,0,0};
     readings = sensors.getDistanceReadings();
   while (robot->step(timeStep) != -1) {
     readings = sensors.getDistanceReadings();
+=======
+  MotionController  motionController = MotionController(motors);
+  Controller controller = Controller(sensors, motionController);
+
+  #ifdef USE_WEBOTS
+      while(robot->step(8) != -1){
+
+  #else
+    //hardware implementaiton
+    while(true){ //TODO: irl timestep
+  #endif
+    controller.step();  
+  }
+
+  
+>>>>>>> Stashed changes
 
 
     std::cout << "Sensor1 Value: " << readings[0] << std::endl;

@@ -5,10 +5,16 @@ EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/project
 EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/floors/protos/RectangleArena.proto"
 
 WorldInfo {
+  basicTimeStep 8
 }
 Viewpoint {
+<<<<<<< Updated upstream
   orientation 0.27139417263040877 -0.647814023095191 -0.7118161241103488 5.343048072667764
   position -0.19964872810832057 -0.3506074558525792 0.28258080409324277
+=======
+  orientation -0.5536259018301959 0.5648108083708837 0.6119535207596496 2.025381982460654
+  position 0.0038134269437701956 -0.22905291240161313 0.504969429175194
+>>>>>>> Stashed changes
 }
 TexturedBackground {
 }
@@ -35,12 +41,25 @@ Robot {
   children [
     DEF main_body Pose {
       children [
+<<<<<<< Updated upstream
         Shape {
           appearance PBRAppearance {
           }
           geometry Box {
             size 0.03 0.02 0.015
           }
+=======
+        DEF main_body Pose {
+          children [
+            Shape {
+              appearance PBRAppearance {
+              }
+              geometry Box {
+                size 0.11 0.12 0.015
+              }
+            }
+          ]
+>>>>>>> Stashed changes
         }
       ]
     }
@@ -55,8 +74,13 @@ Robot {
         }
       ]
       endPoint Solid {
+<<<<<<< Updated upstream
         translation 0 -0.012 0
         rotation 1 0 0 1.57
+=======
+        translation 0 -0.0465 0
+        rotation 0.010999899998118156 -0.707064000709989 0.7070640007099894 3.120650000000001
+>>>>>>> Stashed changes
         children [
           DEF wheel Shape {
             appearance PBRAppearance {
@@ -84,8 +108,13 @@ Robot {
         }
       ]
       endPoint Solid {
+<<<<<<< Updated upstream
         translation 0 0.012 0
         rotation 1 0 -3.9267949639574895e-17 1.57
+=======
+        translation 1.7745378337456952e-06 0.04651856712929259 4.845432100708292e-06
+        rotation 0.010999899998118267 -0.7070640007099892 0.7070640007099894 3.1206500000000004
+>>>>>>> Stashed changes
         children [
           DEF wheel Shape {
             appearance PBRAppearance {
