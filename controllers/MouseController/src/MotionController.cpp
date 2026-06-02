@@ -1,8 +1,6 @@
 #include "../include/MotionController.hpp"
 #include "../include/globals.hpp"
 
-constexpr float PI = 3.141592f;
-
 #include "iostream"
 
 MotionController::MotionController(IMotors& motors, ISensors& sensors): motors(motors), sensors(sensors){}
@@ -28,28 +26,6 @@ void MotionController::calculateCurrentVelocity(){
     
     float averageRadians = (leftWheelRadians + rightWheelRadians) / 2;
     std::cout << "Average Radians: " << averageRadians << "\n";
-
-    float leftWheelDegrees = leftWheelRadians * (180/PI);
-    float rightWheelDegrees = rightWheelRadians * (180/PI);
-    std::cout << "Left Wheel Degrees: " << leftWheelDegrees << "\n";
-    std::cout << "Right Wheel Degrees: " << rightWheelDegrees << "\n";
-
-    float leftWheelPercantage = leftWheelDegrees / 360;
-    float rightWheelPercantage = rightWheelDegrees / 360;
-    // std::cout << "Left Wheel Distance Covered: " << leftWheelDistanceCovered << "\n";
-    // std::cout << "Right Wheel Distance Covered: " << rightWheelDistanceCovered << "\n";
-
-    float leftWheelDistanceCovered = leftWheelPercantage * wheelCircumference;
-    float rightWheelDistanceCovered = rightWheelPercantage * wheelCircumference;
-    std::cout << "Left Wheel Distance Covered: " << leftWheelDistanceCovered << "\n";
-    std::cout << "Right Wheel Distance Covered: " << rightWheelDistanceCovered << "\n";
-
-    float averageDistanceCovered = (leftWheelDistanceCovered + rightWheelDistanceCovered) / 2;
-    std::cout << "Average Distance Covered: " << averageDistanceCovered << "\n";
-
-    float averageVelocity = averageDistanceCovered / (float(timeStep) / 1000.0f);
-    // float averageVelocity = averageDistanceCovered / 0.016;
-    std::cout << "Average Velocity [cm/s]: " << averageVelocity << " cm/s \n";
 
     float averageVelocity2 = averageRadians / (float(timeStep) / 1000.0f);
     // float averageVelocity = averageDistanceCovered / 0.016;
