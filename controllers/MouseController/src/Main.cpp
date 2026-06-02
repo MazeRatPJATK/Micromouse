@@ -2,8 +2,18 @@
 #include <webots/DistanceSensor.hpp>
 #include <iostream>
 #include <array>
+<<<<<<< Updated upstream
 #include "WebotsSensors.cpp"
 #include "WebotsMotors.cpp"
+=======
+
+//our own
+#include "../include/WebotsSpecific/WebotsMotors.hpp"
+#include "../include/WebotsSpecific/WebotsSensors.hpp"
+#include "../include/Algorithms/Controller.hpp"
+#include "../include/MotionController.hpp"
+#include "../include/globals.hpp"
+>>>>>>> Stashed changes
 
 using namespace webots;
 
@@ -22,6 +32,7 @@ int main(int argc, char **argv) {
   #endif
     
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     motors.powerEngines(3.14f,3.14f);
     std::array<int16_t,4> readings = {0,0,0,0};
     readings = sensors.getDistanceReadings();
@@ -33,6 +44,13 @@ int main(int argc, char **argv) {
 
   #ifdef USE_WEBOTS
       while(robot->step(8) != -1){
+=======
+  MotionController  motionController = MotionController(motors, sensors);
+  Controller controller = Controller(sensors, motionController);
+
+  #ifdef USE_WEBOTS
+      while(robot->step(timeStep) != -1){
+>>>>>>> Stashed changes
 
   #else
     //hardware implementaiton

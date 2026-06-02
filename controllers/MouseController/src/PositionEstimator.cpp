@@ -29,8 +29,26 @@ void PositionEstimator::updateCoordinateEstimation(){
         spatialData.y = 0.0;
     }
 
+<<<<<<< Updated upstream
     spatialData.x += cos(spatialData.angle) * distance;
     spatialData.y += sin(spatialData.angle) * distance;
+=======
+
+
+
+
+void PositionEstimator::updateAngleEstimation() {
+    auto enc = sensors.getEncoderReadings();
+    float leftDistance  = (enc[0] / (2 * PI)) * wheelCircumference;
+    float rightDistance = (enc[1] / (2 * PI)) * wheelCircumference;
+
+    // std::cout << enc[1] << " " << enc[0] << std::endl;
+
+    float angle = (rightDistance - leftDistance) / distanceBetweenWheels;
+    spatialData.angle = angle;
+    spatialData.angle = normalizeAngle(spatialData.angle);
+}
+>>>>>>> Stashed changes
     
     // std::cout << "Encoder Sum: " << encoderSum << std::endl;
     // std::cout << "Previous Encoder Sum: " << previousEncoderSum << std::endl;
