@@ -42,20 +42,20 @@ void Mapping::step(){
     // rightHandAlgorithm();
 }
 
-void Mapping::rightHandAlgorithm(){
-   std::array<float, 4> readings = sensors.getDistanceReadings();
+// void Mapping::rightHandAlgorithm(){
+//    std::array<float, 4> readings = sensors.getDistanceReadings();
 
-   float rightForwardReading = readings[0];
-   float leftForwardReading = readings[3];
-   float rightAngledReading = readings[1];
-   float leftAngledReading = readings[2];
-
-
-   if(rightForwardReading > 990 && leftForwardReading > 990){motionController.setTargetVelocity(2);}
-//    else if(){}
+//    float rightForwardReading = readings[0];
+//    float leftForwardReading = readings[3];
+//    float rightAngledReading = readings[1];
+//    float leftAngledReading = readings[2];
 
 
-}
+//    if(rightForwardReading > 990 && leftForwardReading > 990){motionController.setTargetVelocity(2);}
+// //    else if(){}
+
+
+// }
 
 
 void Mapping::updateMap(){
