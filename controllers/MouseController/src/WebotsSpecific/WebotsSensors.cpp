@@ -1,4 +1,5 @@
 #include "../include/WebotsSpecific/WebotsSensors.hpp"
+#include "../include/globals.hpp"
 
 
 
@@ -8,16 +9,16 @@ WebotsSensors::WebotsSensors(webots::Robot* robot) {
     distanceSensors[2] = robot->getDistanceSensor("s3");
     distanceSensors[3] = robot->getDistanceSensor("s4");
 
-    distanceSensors[0]->enable(16);
-    distanceSensors[1]->enable(16);
-    distanceSensors[2]->enable(16);
-    distanceSensors[3]->enable(16);
+    distanceSensors[0]->enable(timeStep);
+    distanceSensors[1]->enable(timeStep);
+    distanceSensors[2]->enable(timeStep);
+    distanceSensors[3]->enable(timeStep);
 
 
     positionSensors[0] = robot->getPositionSensor("encoder1");
     positionSensors[1] = robot->getPositionSensor("encoder2");
-    positionSensors[0]->enable(16);
-    positionSensors[1]->enable(16);
+    positionSensors[0]->enable(timeStep);
+    positionSensors[1]->enable(timeStep);
 }
 
 std::array<float, 4> WebotsSensors::getDistanceReadings() const {

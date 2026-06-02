@@ -1,7 +1,5 @@
 #include "../include/MotionController.hpp"
 #include "../include/globals.hpp"
-#include "../include/util/Util.hpp"
-#include <iostream>
 
 constexpr float PI = 3.141592f;
 
