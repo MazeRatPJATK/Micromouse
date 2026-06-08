@@ -31,33 +31,78 @@ void PositionEstimator::updateCoordinateEstimation(){
 
 
 
-void PositionEstimator::updateAngleEstimation() {
-    auto enc = sensors.getEncoderReadings();
-    float leftDistance  = (enc[0] / (2 * PI)) * wheelCircumference;
-    float rightDistance = (enc[1] / (2 * PI)) * wheelCircumference;
-
-    std::cout << enc[1] << " " << enc[0] << std::endl;
-
-    float angle = (rightDistance - leftDistance) / distanceBetweenWheels;
-    spatialData.angle = angle;
-    spatialData.angle = normalizeAngle(spatialData.angle);
-}
-    
-
-
 // void PositionEstimator::updateAngleEstimation() {
 //     auto enc = sensors.getEncoderReadings();
+//     float leftDistance  = (enc[0] / (2 * PI)) * wheelCircumference;
+//     float rightDistance = (enc[1] / (2 * PI)) * wheelCircumference;
 
-//     double leftDistance  = (enc[0] / (2 * PI)) * wheelCircumference;
-//     double rightDistance = (enc[1] / (2 * PI)) * wheelCircumference;
-
-//     double deltaLeft  = leftDistance  - prevLeftDistance;
-//     double deltaRight = rightDistance - prevRightDistance;
-
-//     prevLeftDistance  = leftDistance;
-//     prevRightDistance = rightDistance;
-
-//     double deltaAngle = (deltaRight - deltaLeft) / distanceBetweenWheels;
-
-//     spatialData.angle = normalizeAngle(spatialData.angle + deltaAngle);
+//     float angle = (rightDistance - leftDistance) / distanceBetweenWheels;
+//     spatialData.angle = angle;
+//     spatialData.angle = normalizeAngle(spatialData.angle);
 // }
+
+
+
+void PositionEstimator::updateAngleEstimation() {
+    updateAngleEstimationBasedOnEncoders();
+    correctAngleEstimationBasedOnDistanceSensors();
+}
+
+void PositionEstimator::updateAngleEstimationBasedOnEncoders() {
+    auto enc = sensors.getEncoderReadings();
+
+    double leftDistance  = (enc[0] / (2 * PI)) * wheelCircumference;
+    double rightDistance = (enc[1] / (2 * PI)) * wheelCircumference;
+
+    double deltaLeft  = leftDistance  - prevLeftDistance;
+    double deltaRight = rightDistance - prevRightDistance;
+
+    prevLeftDistance  = leftDistance;
+    prevRightDistance = rightDistance;
+
+    double deltaAngle = (deltaRight - deltaLeft) / distanceBetweenWheels;
+
+    spatialData.angle = normalizeAngle(spatialData.angle + deltaAngle);
+}
+
+void PositionEstimator::correctAngleEstimationBasedOnDistanceSensors() {
+    constexpr float WALL_DETECTION_THRESHOLD_MM = 750.0f;
+    constexpr float epsilon = 12.5f;
+
+
+    std::array<float,4> readings = sensors.getDistanceReadings();
+    float rightForwardReading = readings[0];
+    float leftForwardReading = readings[3];
+    float rightAngledReading = readings[1];
+    float leftAngledReading = readings[2];
+
+    if(rotating)return;
+    bool wallsOnBothSidesPresent = leftAngledReading < WALL_DETECTION_THRESHOLD_MM &&  rightAngledReading < WALL_DETECTION_THRESHOLD_MM;
+    bool wallInFrontPresent = leftForwardReading < WALL_DETECTION_THRESHOLD_MM &&  rightForwardReading < WALL_DETECTION_THRESHOLD_MM;
+
+
+
+    if(wallInFrontPresent && !wallInFrontPresent){
+        std::cout << "l:" << leftAngledReading <<  "\n r: " <<  rightAngledReading <<std::endl;
+        if(leftAngledReading - rightAngledReading > epsilon){
+            spatialData.angle  = spatialData.angle  + 0.02;
+        }
+        if(rightAngledReading - leftAngledReading > epsilon){
+                    std::cout << spatialData.angle <<  "r bigger =\n\n=========\n\n========" <<std::endl;
+
+            spatialData.angle  = spatialData.angle  - 0.02;
+        }
+    }
+
+    if(rightAngledReading < (530)  && !wallInFrontPresent){
+        spatialData.angle  = spatialData.angle  + 0.02;
+    }
+
+    if(leftAngledReading < (530)  && !wallInFrontPresent ){
+                std::cout << "ladfdsf: " <<std::endl;
+
+        spatialData.angle  = spatialData.angle  - 0.02;
+    }
+
+
+}

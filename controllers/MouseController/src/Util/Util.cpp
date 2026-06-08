@@ -15,3 +15,16 @@ float normalizeAngle(float a) {
 
     return a;
 }
+
+float snapToRightAngle(float angle)
+{
+    const float rightAngle = M_PI / 2.0f;
+
+    float steps = angle / rightAngle;
+
+    float snappedSteps = std::round(steps);
+
+    float snappedAngle = snappedSteps * rightAngle;
+
+    return snappedAngle;
+}

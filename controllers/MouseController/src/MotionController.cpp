@@ -25,39 +25,63 @@ void MotionController::adjustVelocity(){
     //TODO velocity adjusting
 }
 
-void MotionController::adjustAngle(){
+
+
+
+
+void MotionController::adjustAngle() {
 
     rotating = true;
+
     float current = spatialData.angle;
 
-    float d = normalizeAngle(targetAngle - current);
-    
-   
-    if(d >= 0.01){
-        motors.powerEngines(1,-1);
-    }
-    else if(d <= -0.01){
-        motors.powerEngines(-1,1);       
+    float error = normalizeAngle(targetAngle - current);
 
-    }
-    else{
+    
+    constexpr float epsilon = 0.02f;
+
+    if (std::abs(error) < epsilon) {
+        motors.powerEngines(0, 0);
         rotating = false;
+
+        previousError = error;
+
+        return;
     }
 
-    return;
-    
+    // --- PD controller ---
+
+    constexpr float kp = 6.0f;
+    constexpr float kd = 0.5f;
+
+
+    float derivative = (error - previousError) / (0.016f);
+
+    float turn = kp * error + kd * derivative ;
+
+  
+    constexpr float maxTurn = 3.0f;
+    constexpr float minTurn = 0.2f;
+
+    if (turn > maxTurn)
+        turn = maxTurn;
+
+   
+    if (turn < -maxTurn)
+        turn = -maxTurn;
+
+    if (turn > 0 && turn < minTurn)   turn = minTurn;
+    if (turn < 0 && turn > -minTurn)  turn = -minTurn;
+
+
+
+    motors.powerEngines(turn, -turn);
+
+    previousError = error;
 }
 
 
-
-
-
-
 void MotionController::step(){
-    std::cout << "target: " << targetAngle << std::endl;
-        adjustVelocity();
         adjustAngle(); 
-         
-
-
+        adjustVelocity();
 }
