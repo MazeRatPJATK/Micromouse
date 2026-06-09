@@ -13,10 +13,11 @@ constexpr float QUADRANT_ANGLE_RAD = 1.57f; // ~90 degrees in radians
 constexpr float WALL_DETECTION_THRESHOLD_MM = 900.0f;
 
 
-bool flag = false;
+bool first = true;
+bool exploreStartingTile = true;
 void Mapping::step(){
-    motionController.setTargetVelocity(4);
-    // 
+    // motionController.setTargetVelocity(4);
+    
     // std::cout << "X: " << spatialData.x << "\n"
             //   << "Y: " << spatialData.y << std::endl;
     // if(spatialData.y > 36   && spatialData.y < 38 && spatialData.x >= -1 ){
@@ -39,38 +40,68 @@ void Mapping::step(){
         //  
     // } 
 
-    std::cout << spatialData.angle << std::endl;
-    if(spatialData.y > -1   && spatialData.y < 1 && spatialData.x >= -1  && spatialData.x < 1){
-         motionController.setTargetAngle(1.57);
-    } 
-    else if(spatialData.x > 53   && spatialData.x < 54 && spatialData.y >= -1 ){
-         motionController.setTargetAngle(-3.14);
-    } 
-    else if(spatialData.x > 53   && spatialData.x < 55 && spatialData.y >= -72  && spatialData.y <= -70){
-         motionController.setTargetAngle(-1.57);
-    } 
+
+
+    // std::cout << spatialData.angle << std::endl;
+    // if(spatialData.y > -1   && spatialData.y < 1 && spatialData.x >= -1  && spatialData.x < 1){
+        //  motionController.setTargetAngle(1.57);
+    // } 
+    // else if(spatialData.x > 53   && spatialData.x < 54 && spatialData.y >= -1 ){
+        //  motionController.setTargetAngle(-3.14);
+    // } 
+    // else if(spatialData.x > 53   && spatialData.x < 55 && spatialData.y >= -72  && spatialData.y <= -70){
+        //  motionController.setTargetAngle(-1.57);
+    // } 
+    if(exploreStartingTile){
+        updateMap();
+        motionController.setTargetAngle(1.57);
+        updateMap();
+        motionController.setTargetAngle(3.14);
+        updateMap();
+        motionController.setTargetAngle(-1.57); 
+        updateMap();
+        motionController.setTargetAngle(0); 
+        updateMap();
+        exploreStartingTile = false;
+       
+    }
     updateMap();
-    // rightHandAlgorithm();
+    rightHandAlgorithm();
 }
 
 void Mapping::rightHandAlgorithm(){
-   std::array<float, 4> readings = sensors.getDistanceReadings();
+    std::array<float, 4> readings = sensors.getDistanceReadings();
+    std::array<int,2> currentGridCoordinates = {
+        static_cast<int>(std::round((spatialData.x) / GRID_CELL_SIZE)),
+        static_cast<int>(std::round((spatialData.y) / GRID_CELL_SIZE))
+    };
 
-   float rightForwardReading = readings[0];
-   float leftForwardReading = readings[3];
-   float rightAngledReading = readings[1];
-   float leftAngledReading = readings[2];
+    std::array<WallState, 4> walls = map.getWallState(
+        currentGridCoordinates[0], currentGridCoordinates[1]
+    );
+    walls = getLocalWalls(walls);
+
+    bool wallInFront = (walls[0] == PRESENT);
+    bool wallOnRight = (walls[1] == PRESENT);
+    bool wallOnLeft  = (walls[3] == PRESENT);
 
 
-   if(rightForwardReading > 990 && leftForwardReading > 990){motionController.setTargetVelocity(2);}
-//    else if(){}
-
-
+    if(walls[0] == UNKNOWN){
+        motionController.setTargetVelocity(3);
+    }
+    else if (!wallOnRight) {
+        motionController.setTargetAngle(spatialData.angle + 1.57f);
+    } else if (!wallInFront) {
+        motionController.setTargetVelocity(2); 
+    } else if (!wallOnLeft) {
+        motionController.setTargetAngle(spatialData.angle - 1.57f);
+    } else {
+        motionController.setTargetAngle(spatialData.angle + 3.14f);
+    }
 }
 
 
 void Mapping::updateMap(){
-
     std::array<int,2> currentGridCoordinates = {
         static_cast<int>(std::round((spatialData.x )/GRID_CELL_SIZE)),
         static_cast<int>(std::round((spatialData.y )/GRID_CELL_SIZE))
@@ -101,12 +132,19 @@ void Mapping::updateMap(){
     bool triggerForwardMapping = movedToNewCell && closeToEdge; 
     bool triggerTurnMapping    = turned90Deg && closeToEdge;
     
+    // if(first){
+    //     mapForwardCell(currentGridCoordinates);
+    //     first = false;
+    // }
+
 
     if ( triggerTurnMapping) {
+
         mapForwardCell(currentGridCoordinates);
         previousAngle = snapToRightAngle(spatialData.angle);
     }
     else if(triggerForwardMapping){
+
         mapForwardCell(currentGridCoordinates);
 
         previousGridCoordinates = currentGridCoordinates;
@@ -136,7 +174,7 @@ void Mapping::mapForwardCell(const std::array<int,2>& currentCell){
             localWalls[2] = ABSENT;
         }
 
-        std::array<WallState, 4> worldWalls = localWalls; // start with copy
+        std::array<WallState, 4> worldWalls = localWalls; 
         rotateWallsToWorldFrame(worldWalls);
 
         int forwardSquareX = currentCell[0] + static_cast<int>(std::round(sin(spatialData.angle)));
@@ -145,10 +183,10 @@ void Mapping::mapForwardCell(const std::array<int,2>& currentCell){
 
         
 
-        std::cout << "Angle: " << spatialData.angle << "\n"
-                  << "Updating walls at X: " << forwardSquareX << " Y: " << forwardSquareY << "\n"
-                  << "N/E/S/W: " << (char)worldWalls[0] << (char)worldWalls[1] 
-                                 << (char)worldWalls[2] << (char)worldWalls[3] << std::endl;
+        // std::cout << "Angle: " << spatialData.angle << "\n"
+        //           << "Updating walls at X: " << forwardSquareX << " Y: " << forwardSquareY << "\n"
+        //           << "N/E/S/W: " << (char)worldWalls[0] << (char)worldWalls[1] 
+        //                          << (char)worldWalls[2] << (char)worldWalls[3] << std::endl;
 }
 
 void Mapping::rotateWallsToWorldFrame(std::array<WallState, 4>& walls) {
@@ -156,22 +194,11 @@ void Mapping::rotateWallsToWorldFrame(std::array<WallState, 4>& walls) {
     int steps = 0;
     float epsilon = 0.01;
     
-    if(angle + M_PI < epsilon){
-        steps = 2;
-    }
-    else if(angle + (M_PI/2) < epsilon){
-        steps = 3;
-    }
-    else if(angle < epsilon){
-        steps = 0;
-    }
-    else if(angle - (M_PI/2) < epsilon){
-        steps = 1;
-    }
-
-    else if(angle - M_PI < epsilon){
-        steps = 2;
-    }
+    if(angle + M_PI          < epsilon) steps = 2;   
+    else if(angle + (M_PI/2) < epsilon) steps = 3;
+    else if(angle            < epsilon) steps = 0;
+    else if(angle - (M_PI/2) < epsilon) steps = 1;
+    else if(angle - M_PI     < epsilon) steps = 2;
 
     if (steps == 0) return; 
 
@@ -179,6 +206,29 @@ void Mapping::rotateWallsToWorldFrame(std::array<WallState, 4>& walls) {
     for (int i = 0; i < 4; i++) {
         walls[(i + steps) % 4] = originalWalls[i];
     }
+}
+
+std::array<WallState, 4> Mapping::getLocalWalls(const std::array<WallState, 4>& worldWalls) {
+    float angle = snapToRightAngle(spatialData.angle);
+    int steps = 0;
+    float epsilon = 0.01;
+
+    if      (angle + M_PI      < epsilon) steps = 2;
+    else if (angle + (M_PI/2)  < epsilon) steps = 3;
+    else if (angle             < epsilon) steps = 0;
+    else if (angle - (M_PI/2)  < epsilon) steps = 1;
+    else if (angle - M_PI      < epsilon) steps = 2;
+
+    if (steps == 0) return worldWalls;
+
+    std::array<WallState, 4> localWalls;
+    int reverseSteps = (4 - steps) % 4;
+
+    for (int i = 0; i < 4; i++) {
+        localWalls[(i + reverseSteps) % 4] = worldWalls[i];
+    }
+
+    return localWalls; 
 }
 
 Mapping::Mapping(Map& map, MotionController& motionController, ISensors& sensors)

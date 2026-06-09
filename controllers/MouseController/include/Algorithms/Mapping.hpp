@@ -21,6 +21,8 @@ private:
 
         void updateMap();
         void rotateWallsToWorldFrame(std::array<WallState,4>& walls);
+        std::array<WallState, 4> getLocalWalls(const std::array<WallState, 4>& worldWalls);
+
         void mapForwardCell(const std::array<int,2>& currentCell);
         std::array<int,2> translateToGridCoordinate(float x, float y);
 

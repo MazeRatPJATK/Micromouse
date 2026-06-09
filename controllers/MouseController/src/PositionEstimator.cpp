@@ -83,25 +83,23 @@ void PositionEstimator::correctAngleEstimationBasedOnDistanceSensors() {
 
 
     if(wallInFrontPresent && !wallInFrontPresent){
-        std::cout << "l:" << leftAngledReading <<  "\n r: " <<  rightAngledReading <<std::endl;
         if(leftAngledReading - rightAngledReading > epsilon){
             spatialData.angle  = spatialData.angle  + 0.02;
         }
         if(rightAngledReading - leftAngledReading > epsilon){
-                    std::cout << spatialData.angle <<  "r bigger =\n\n=========\n\n========" <<std::endl;
-
             spatialData.angle  = spatialData.angle  - 0.02;
         }
+        return;
     }
 
     if(rightAngledReading < (530)  && !wallInFrontPresent){
         spatialData.angle  = spatialData.angle  + 0.02;
+        return;
     }
 
     if(leftAngledReading < (530)  && !wallInFrontPresent ){
-                std::cout << "ladfdsf: " <<std::endl;
-
         spatialData.angle  = spatialData.angle  - 0.02;
+        
     }
 
 

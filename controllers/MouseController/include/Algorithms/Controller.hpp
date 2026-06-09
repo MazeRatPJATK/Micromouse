@@ -9,13 +9,23 @@
 #include "../MotionController.hpp"
 #include "../Interfaces/ISensors.hpp"
 #include "../PositionEstimator.hpp"
+#include <queue>
+
+struct Command{
+    float endRequiredAngle;
+    float endRequiredX;
+    float endRequiredY;
+    void* functionToDo;
+}
+
 
 class Controller{
     public:
         Map map;
         Controller(ISensors& sensors, MotionController& motionController);
         void step();
-
+        std::queue<Command> commandQueue = {};
+        std::queue<Command> interrupts = {};
     private:
         MotionController& motionController;
         ISensors& sensors;
