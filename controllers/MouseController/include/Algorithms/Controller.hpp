@@ -10,13 +10,13 @@
 #include "../Interfaces/ISensors.hpp"
 #include "../PositionEstimator.hpp"
 #include <queue>
+#include <functional>
 
-struct Command{
-    float endRequiredAngle;
-    float endRequiredX;
-    float endRequiredY;
-    void* functionToDo;
-}
+
+enum ControllerState{
+    IDLE,
+    EXECUTING_COMMAND
+};
 
 
 class Controller{
@@ -27,11 +27,17 @@ class Controller{
         std::queue<Command> commandQueue = {};
         std::queue<Command> interrupts = {};
     private:
+        void enqueCommand(Command cmd);
+        void applyCommands();
+        void initNewCommand(Command& c);
+        bool hasFinishedCommand(Command& c); 
+        const std::queue<Command>& peekCommandQueue() const;
         MotionController& motionController;
         ISensors& sensors;
         Mapping mapper;
         Solving solver;
         PositionEstimator positionEstimator;
+        ControllerState controllerState;
 
 
 

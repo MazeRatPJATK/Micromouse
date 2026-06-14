@@ -12,6 +12,10 @@ class PositionEstimator{
         float prevRightDistance = 0;
         void updateAngleEstimationBasedOnEncoders();
         void correctAngleEstimationBasedOnDistanceSensors();
+
+        void updatePositionEstimationBasedOnEncoders();
+        void correctPositionEstimationBasedOnSensors();
+
     public:
         PositionEstimator(ISensors& sensors);
         void updateAngleEstimation();

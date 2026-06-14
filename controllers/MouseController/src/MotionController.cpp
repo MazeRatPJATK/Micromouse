@@ -37,7 +37,6 @@ void MotionController::adjustAngle() {
 
     float error = normalizeAngle(targetAngle - current);
 
-    
     constexpr float epsilon = 0.02f;
 
     if (std::abs(error) < epsilon) {

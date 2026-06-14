@@ -1,6 +1,9 @@
 #include <cmath>
+#include <functional>
 
 constexpr double PI = 3.141592;
+
+
 
 float normalizeAngle(float a) {
     a = fmodf(a + PI, 2.0f * PI);

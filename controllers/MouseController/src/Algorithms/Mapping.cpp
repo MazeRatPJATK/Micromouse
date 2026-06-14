@@ -41,36 +41,20 @@ void Mapping::step(){
     // } 
 
 
-
-    // std::cout << spatialData.angle << std::endl;
-    // if(spatialData.y > -1   && spatialData.y < 1 && spatialData.x >= -1  && spatialData.x < 1){
-        //  motionController.setTargetAngle(1.57);
-    // } 
-    // else if(spatialData.x > 53   && spatialData.x < 54 && spatialData.y >= -1 ){
-        //  motionController.setTargetAngle(-3.14);
-    // } 
-    // else if(spatialData.x > 53   && spatialData.x < 55 && spatialData.y >= -72  && spatialData.y <= -70){
-        //  motionController.setTargetAngle(-1.57);
-    // } 
-    if(exploreStartingTile){
-        updateMap();
-        motionController.setTargetAngle(1.57);
-        updateMap();
-        motionController.setTargetAngle(3.14);
-        updateMap();
-        motionController.setTargetAngle(-1.57); 
-        updateMap();
-        motionController.setTargetAngle(0); 
-        updateMap();
-        exploreStartingTile = false;
-       
+    if(exploreStartingTile){  
+    enqueCommandCallback({2,1.57,0,0,nullptr});
+    enqueCommandCallback({2,3.14,0,0,nullptr});
+    enqueCommandCallback({2,-1.57,0,0,nullptr});
+    enqueCommandCallback({4, 0, 0, 0, [this]() { this->rightHandAlgorithm(); }}); 
+    exploreStartingTile = false;
     }
+
+
     updateMap();
-    rightHandAlgorithm();
+
 }
 
 void Mapping::rightHandAlgorithm(){
-    std::array<float, 4> readings = sensors.getDistanceReadings();
     std::array<int,2> currentGridCoordinates = {
         static_cast<int>(std::round((spatialData.x) / GRID_CELL_SIZE)),
         static_cast<int>(std::round((spatialData.y) / GRID_CELL_SIZE))
@@ -84,23 +68,57 @@ void Mapping::rightHandAlgorithm(){
     bool wallInFront = (walls[0] == PRESENT);
     bool wallOnRight = (walls[1] == PRESENT);
     bool wallOnLeft  = (walls[3] == PRESENT);
+    // std::cout << "f/r/l: "  << (char)walls[0] << (char)walls[1] << (char)walls[3] << std::endl;
 
 
-    if(walls[0] == UNKNOWN){
-        motionController.setTargetVelocity(3);
+    if(!wallOnRight){
+        float targetAngle = snapToRightAngle(spatialData.angle) + 1.57f;
+        enqueCommandCallback({
+    2,
+    targetAngle,
+    0,
+    0,
+    [this, targetAngle]()
+    {
+        auto [x, y] = getNextCellTarget();
+
+        enqueCommandCallback({
+            2,
+            targetAngle,
+            x,
+            y,
+            [this]() { this->rightHandAlgorithm(); }
+        });
     }
-    else if (!wallOnRight) {
-        motionController.setTargetAngle(spatialData.angle + 1.57f);
-    } else if (!wallInFront) {
-        motionController.setTargetVelocity(2); 
-    } else if (!wallOnLeft) {
-        motionController.setTargetAngle(spatialData.angle - 1.57f);
-    } else {
-        motionController.setTargetAngle(spatialData.angle + 3.14f);
+    });
     }
+
+    else{
+                auto [x, y] = getNextCellTarget();
+
+               enqueCommandCallback({2, spatialData.angle, x, y, [this]() { this->rightHandAlgorithm(); }});
+    } 
+
+
 }
 
 
+std::pair<float, float> Mapping::getNextCellTarget() {
+    float angle = spatialData.angle;
+    float x = spatialData.x;
+    float y = spatialData.y;
+
+        std::array<int,2> currentCell = {
+        static_cast<int>(std::round((spatialData.x )/GRID_CELL_SIZE)),
+        static_cast<int>(std::round((spatialData.y )/GRID_CELL_SIZE))
+    };
+
+    int forwardSquareX = currentCell[0] + static_cast<int>(std::round(sin(spatialData.angle)));
+    int forwardSquareY = currentCell[1] + static_cast<int>(std::round(cos(spatialData.angle)));
+
+    return {forwardSquareX*GRID_CELL_SIZE, forwardSquareY*GRID_CELL_SIZE};
+}
+ 
 void Mapping::updateMap(){
     std::array<int,2> currentGridCoordinates = {
         static_cast<int>(std::round((spatialData.x )/GRID_CELL_SIZE)),
@@ -183,10 +201,6 @@ void Mapping::mapForwardCell(const std::array<int,2>& currentCell){
 
         
 
-        // std::cout << "Angle: " << spatialData.angle << "\n"
-        //           << "Updating walls at X: " << forwardSquareX << " Y: " << forwardSquareY << "\n"
-        //           << "N/E/S/W: " << (char)worldWalls[0] << (char)worldWalls[1] 
-        //                          << (char)worldWalls[2] << (char)worldWalls[3] << std::endl;
 }
 
 void Mapping::rotateWallsToWorldFrame(std::array<WallState, 4>& walls) {
@@ -231,10 +245,11 @@ std::array<WallState, 4> Mapping::getLocalWalls(const std::array<WallState, 4>& 
     return localWalls; 
 }
 
-Mapping::Mapping(Map& map, MotionController& motionController, ISensors& sensors)
+Mapping::Mapping(Map& map, MotionController& motionController, ISensors& sensors, std::function<void(Command)> enqueCommandCallback)
     :map(map),
      motionController(motionController),
-     sensors(sensors){
+     sensors(sensors),
+     enqueCommandCallback(enqueCommandCallback){
 
 }
 
