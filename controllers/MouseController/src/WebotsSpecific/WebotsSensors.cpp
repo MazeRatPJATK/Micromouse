@@ -1,4 +1,5 @@
 #include "../include/WebotsSpecific/WebotsSensors.hpp"
+#include "../include/globals.hpp"
 
 int timestep = 16;
 
@@ -8,16 +9,16 @@ WebotsSensors::WebotsSensors(webots::Robot* robot) {
     distanceSensors[2] = robot->getDistanceSensor("s3");
     distanceSensors[3] = robot->getDistanceSensor("s4");
 
-    distanceSensors[0]->enable(timestep);
-    distanceSensors[1]->enable(timestep);
-    distanceSensors[2]->enable(timestep);
-    distanceSensors[3]->enable(timestep);
+    distanceSensors[0]->enable(timeStep);
+    distanceSensors[1]->enable(timeStep);
+    distanceSensors[2]->enable(timeStep);
+    distanceSensors[3]->enable(timeStep);
 
 
     positionSensors[0] = robot->getPositionSensor("encoder1");
     positionSensors[1] = robot->getPositionSensor("encoder2");
-    positionSensors[0]->enable(timestep);
-    positionSensors[1]->enable(timestep);
+    positionSensors[0]->enable(timeStep);
+    positionSensors[1]->enable(timeStep);
 }
 
 std::array<float, 4> WebotsSensors::getDistanceReadings() const {
@@ -32,6 +33,7 @@ std::array<float, 4> WebotsSensors::getDistanceReadings() const {
 IMUData WebotsSensors::getIMUReadings() const {
     return IMUData();
 }
+
 
 std::array<float, 2>  WebotsSensors::getEncoderReadings() const {
     return {

@@ -1,28 +1,58 @@
 #include "../include/MotionController.hpp"
-#include "SpatialData.hpp"
 #include "../include/globals.hpp"
-#include "../include/util/Util.hpp"
-#include <iostream>
 
-constexpr float PI = 3.1415f;
+#include "iostream"
 
-
-MotionController::MotionController(IMotors& motors): motors(motors){}
+MotionController::MotionController(IMotors& motors, ISensors& sensors): motors(motors), sensors(sensors){}
 
 void MotionController::setTargetVelocity(float velocity){
     targetVelocity = velocity;
 }
 
 void MotionController::setTargetAngle(float angle){
-    targetAngle = normalizeAngle(angle);
+    targetAngle = angle;
+}
+
+void MotionController::calculateCurrentVelocity(){
+    // std::cout << "Test\n";
+    std::array<float,2> encoderReadings = sensors.getEncoderReadings();
+
+    float leftWheelRadians = encoderReadings[0] - previousReadings[0];
+    float rightWheelRadians = encoderReadings[1] - previousReadings[1];
+    previousReadings[0] = encoderReadings[0];
+    previousReadings[1] = encoderReadings[1];
+    std::cout << "Left Wheel Radians: " << leftWheelRadians << "\n";
+    std::cout << "Right Wheel Radians: " << rightWheelRadians << "\n";
+    
+    float averageRadians = (leftWheelRadians + rightWheelRadians) / 2;
+    std::cout << "Average Radians: " << averageRadians << "\n";
+
+    float currentVelocity = averageRadians / (float(timeStep) / 1000.0f);
+    // float currentVelocity = averageDistanceCovered / 0.016;
+    std::cout << "Average Velocity [rad/s]: " << currentVelocity << " rad/s \n";
 }
 
 void MotionController::adjustVelocity(){
     if(rotating == false){
-        motors.powerEngines(targetVelocity,targetVelocity); //TODO: actually make the robot try and reach the target velocity
-
+        motors.powerEngines(targetVelocity, targetVelocity);
     }
-    //TODO velocity adjusting
+    else {
+        if (abs(currentVelocity) - targetVelocity > velocityTolerance){
+            if (currentVelocity - targetVelocity < -velocityTolerance){
+                velocityCorrection -= 0.1f;     
+            }
+            else if (currentVelocity - targetVelocity > velocityTolerance){
+                velocityCorrection += 0.1f;
+            }
+            
+        }
+        
+        
+        motors.powerEngines(targetVelocity + velocityCorrection, targetVelocity + velocityCorrection);    
+    }
+    
+    
+    std::cout << "Target Velocity: " << targetVelocity << "\nVelocity Correction: " << velocityCorrection << "\n";
 }
 
 
@@ -34,6 +64,7 @@ void MotionController::adjustAngle() {
     rotating = true;
 
     float current = spatialData.angle;
+    float error = targetAngle - current;
 
     float error = normalizeAngle(targetAngle - current);
 

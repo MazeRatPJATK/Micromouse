@@ -27,11 +27,11 @@ int main(int argc, char **argv) {
     //hardware implementaiton
   #endif
     
-  MotionController  motionController = MotionController(motors);
+  MotionController  motionController = MotionController(motors, sensors);
   Controller controller = Controller(sensors, motionController);
 
   #ifdef USE_WEBOTS
-      while(robot->step(32) != -1){
+      while(robot->step(timeStep) != -1){
 
   #else
     //hardware implementaiton
