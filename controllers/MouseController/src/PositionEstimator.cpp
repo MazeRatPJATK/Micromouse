@@ -52,8 +52,8 @@ void PositionEstimator::correctPositionEstimationBasedOnSensors(){
 
     if(wallsOnBothSidesPresent && !wallInFrontPresent){
         if((leftAngledReading - rightAngledReading < epsilon) || (rightAngledReading - leftAngledReading < epsilon)){
-           if(snapToRightAngle(sin(spatialData.angle))) spatialData.y = currentGridCoordinates[1];
-           if(snapToRightAngle(cos(spatialData.angle))){std::cout << cos(spatialData.angle) << std::endl; spatialData.x = currentGridCoordinates[0];}
+           if(snapToRightAngle(sin(spatialData.angle)) != 0) spatialData.y = currentGridCoordinates[1] * GRID_CELL_SIZE;
+           if(snapToRightAngle(cos(spatialData.angle)) != 0){spatialData.x = currentGridCoordinates[0] * GRID_CELL_SIZE;}
         };
 
     }
@@ -83,7 +83,7 @@ void PositionEstimator::updateAngleEstimationBasedOnEncoders() {
 
 void PositionEstimator::correctAngleEstimationBasedOnDistanceSensors() {
 
-    constexpr float WALL_DETECTION_THRESHOLD_MM = 750.0f;
+    constexpr float WALL_DETECTION_THRESHOLD_MM = 650.0f;
     constexpr float epsilon = 7.5f;
 
 
@@ -109,12 +109,12 @@ void PositionEstimator::correctAngleEstimationBasedOnDistanceSensors() {
         return;
     }
 
-    if(rightAngledReading < (530)  && !wallInFrontPresent){
+    if(rightAngledReading < (330)  && !wallInFrontPresent){
         spatialData.angle  = spatialData.angle  + 0.005;
         return;
     }
 
-    if(leftAngledReading < (530)  && !wallInFrontPresent ){
+    if(leftAngledReading < (330)  && !wallInFrontPresent ){
         spatialData.angle  = spatialData.angle  - 0.005;
         
     }

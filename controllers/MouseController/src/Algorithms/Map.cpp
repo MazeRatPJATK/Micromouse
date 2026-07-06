@@ -33,7 +33,7 @@ void Map::putWalls(int x, int y, WallState north, WallState east, WallState sout
     if (y < 15)         putWall(x,   y-1, NORTH, south);
     if (x > 0)          putWall(x-1, y,   EAST,  west);
 
-    // printMaze();
+    printMaze();
 }
 
 

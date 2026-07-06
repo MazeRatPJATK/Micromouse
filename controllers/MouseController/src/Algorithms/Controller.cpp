@@ -84,16 +84,24 @@ void Controller::initNewCommand(Command& cmd){
 
 bool Controller::hasFinishedCommand(Command& cmd){
     float epsilon = 0.8f;
-    float angleEpsilon = 0.05f;
+    float angleEpsilon = 0.25f;
     bool x_ok = std::fabs(spatialData.x - cmd.targetX) < epsilon;
     bool y_ok = std::fabs(spatialData.y - cmd.targetY) < epsilon;
-    bool angle_ok = std::fabs(spatialData.angle - cmd.targetAngle) < angleEpsilon;
+    // bool angle_ok = std::fabs(spatialData.angle - cmd.targetAngle) < angleEpsilon;
+    bool angle_ok = std::fabs(normalizeAngle(spatialData.angle - cmd.targetAngle)) < angleEpsilon;
 
-    if (x_ok && y_ok && angle_ok) std::cout << "finished cmd" << std::endl;
-    // std::cout << x_ok << y_ok << angle_ok << std::endl;
-    std::cout << "y: " << spatialData.y << " x: " << spatialData.x << std::endl;
-        // std::cout << "angle: " << spatialData.angle << std::endl;
-
+    // if (x_ok && y_ok && angle_ok) std::cout << " \n\n\n\n\n\n\n\n\n\n\n\n ========= \n\n\n finished cmd \n ========= \n\n\n" << std::endl;
+    
+    // static int x = 0;
+    // x += 1;
+    // if(x == 10 || (x_ok && y_ok && angle_ok)){
+    // //         std::cout << x_ok << y_ok << angle_ok << std::endl;
+            
+    //     std::cout << "x:      " << spatialData.x  <<"       y:      " << spatialData.y <<  "      angle:       " << spatialData.angle << std::endl;
+    //     std::cout << "trgt x: " << cmd.targetX <<  "       trgt y: " << cmd.targetY  << "             target angle: "<< cmd.targetAngle << std::endl;
+    //     std::cout << "\n========\n\n\n=======" <<std::endl;
+    //     x = 0;
+    // }
 
     return x_ok && y_ok && angle_ok;
 }

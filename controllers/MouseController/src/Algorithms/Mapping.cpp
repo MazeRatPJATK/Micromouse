@@ -45,7 +45,7 @@ void Mapping::step(){
     enqueCommandCallback({2,1.57,0,0,nullptr});
     enqueCommandCallback({2,3.14,0,0,nullptr});
     enqueCommandCallback({2,-1.57,0,0,nullptr});
-    enqueCommandCallback({4, 0, 0, 0, [this]() { this->rightHandAlgorithm(); }}); 
+    enqueCommandCallback({2, 0, 0, 0, [this]() { this->rightHandAlgorithm(); }}); 
     exploreStartingTile = false;
     }
 
@@ -71,15 +71,18 @@ void Mapping::rightHandAlgorithm(){
     // std::cout << "f/r/l: "  << (char)walls[0] << (char)walls[1] << (char)walls[3] << std::endl;
 
 
+
     if(!wallOnRight){
-        float targetAngle = snapToRightAngle(spatialData.angle) + 1.57f;
+        // std::cout << "no right wall" << std::endl;
+        float targetAngle = normalizeAngle(snapToRightAngle(spatialData.angle) + 1.57f);
         enqueCommandCallback({
     2,
     targetAngle,
-    0,
-    0,
+    spatialData.x,
+    spatialData.y,
     [this, targetAngle]()
     {
+        // std::cout << " \n embedded lambda runs \n\n ===== \n" << std::endl;
         auto [x, y] = getNextCellTarget();
 
         enqueCommandCallback({
@@ -92,11 +95,22 @@ void Mapping::rightHandAlgorithm(){
     }
     });
     }
-
+ else if (wallInFront && wallOnRight)
+{
+       float targetAngle = normalizeAngle(snapToRightAngle(spatialData.angle) - 1.57f);
+        enqueCommandCallback({
+    2,
+    targetAngle,
+    spatialData.x,
+    spatialData.y,
+             [this]() { this->rightHandAlgorithm(); }
+    });
+    
+   
+    }
     else{
-                auto [x, y] = getNextCellTarget();
-
-               enqueCommandCallback({2, spatialData.angle, x, y, [this]() { this->rightHandAlgorithm(); }});
+        auto [x, y] = getNextCellTarget();
+        enqueCommandCallback({2,snapToRightAngle(spatialData.angle), x, y, [this]() { this->rightHandAlgorithm(); }});
     } 
 
 
@@ -113,8 +127,10 @@ std::pair<float, float> Mapping::getNextCellTarget() {
         static_cast<int>(std::round((spatialData.y )/GRID_CELL_SIZE))
     };
 
+    // std::cout << "current xy: " << currentCell[0] << " " <<currentCell[1] << std::endl;
     int forwardSquareX = currentCell[0] + static_cast<int>(std::round(sin(spatialData.angle)));
     int forwardSquareY = currentCell[1] + static_cast<int>(std::round(cos(spatialData.angle)));
+    // std::cout << "target xy: " << forwardSquareX * GRID_CELL_SIZE << " " << forwardSquareY  *GRID_CELL_SIZE<< std::endl;
 
     return {forwardSquareX*GRID_CELL_SIZE, forwardSquareY*GRID_CELL_SIZE};
 }
