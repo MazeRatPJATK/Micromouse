@@ -27,22 +27,32 @@ void MotionController::calculateCurrentVelocity(){
     float averageRadians = (leftWheelRadians + rightWheelRadians) / 2;
     std::cout << "Average Radians: " << averageRadians << "\n";
 
-    float averageVelocity2 = averageRadians / (float(timeStep) / 1000.0f);
-    // float averageVelocity = averageDistanceCovered / 0.016;
-    std::cout << "Average Velocity [rad/s]: " << averageVelocity2 << " rad/s \n";
+    float currentVelocity = averageRadians / (float(timeStep) / 1000.0f);
+    // float currentVelocity = averageDistanceCovered / 0.016;
+    std::cout << "Average Velocity [rad/s]: " << currentVelocity << " rad/s \n";
 }
 
 void MotionController::adjustVelocity(){
     if(rotating == false){
-        motors.powerEngines(targetVelocity, targetVelocity); //TODO: actually make the robot try and reach the target velocity
-
+        motors.powerEngines(targetVelocity, targetVelocity);
     }
-
-    // if (currentVelocity != targetVelocity) {
-    //     motors.powerEngines(targetVelocity, targetVelocity);
-    // }
+    else {
+        if (abs(currentVelocity) - targetVelocity > velocityTolerance){
+            if (currentVelocity - targetVelocity < -velocityTolerance){
+                velocityCorrection -= 0.1f;     
+            }
+            else if (currentVelocity - targetVelocity > velocityTolerance){
+                velocityCorrection += 0.1f;
+            }
+            
+        }
+        
+        
+        motors.powerEngines(targetVelocity + velocityCorrection, targetVelocity + velocityCorrection);    
+    }
     
-    std::cout << "Target Velocity: " << targetVelocity << "\n";
+    
+    std::cout << "Target Velocity: " << targetVelocity << "\nVelocity Correction: " << velocityCorrection << "\n";
 }
 
 void MotionController::adjustAngle(){

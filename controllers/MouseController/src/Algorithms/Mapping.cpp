@@ -2,7 +2,7 @@
 #include "./../include/Algorithms/Map.hpp"
 #include "../../include/globals.hpp"
 #include <array>
-#include "cmath"
+#include <cmath>
 
 
 #include "iostream"

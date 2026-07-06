@@ -3,7 +3,6 @@
 #include "./Interfaces/IMotors.hpp"
 #include "./util/Util.hpp"
 #include "SpatialData.hpp"
-#include "util/Util.hpp"
 
 
 
@@ -16,9 +15,12 @@ class MotionController{
         void PID();
 
     private:
-        float angleTolerance = 1.0f;
+        float angleTolerance = 0.1f;
+        float velocityTolerance = 0.1f;
         float targetAngle = 0.0f;
         float targetVelocity = 0.0f;
+        float currentVelocity = 0.0f;
+        float velocityCorrection = 0.0f;
         float previousReadings[2] = {0.0f, 0.0f};
         void adjustAngle();
         void calculateCurrentVelocity();

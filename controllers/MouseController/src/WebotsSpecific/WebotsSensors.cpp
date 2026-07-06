@@ -34,6 +34,7 @@ IMUData WebotsSensors::getIMUReadings() const {
     return IMUData();
 }
 
+
 std::array<float, 2>  WebotsSensors::getEncoderReadings() const {
     return {
         static_cast<float>(positionSensors[0]->getValue()),
