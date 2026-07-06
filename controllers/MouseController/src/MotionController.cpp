@@ -21,11 +21,11 @@ void MotionController::calculateCurrentVelocity(){
     float rightWheelRadians = encoderReadings[1] - previousReadings[1];
     previousReadings[0] = encoderReadings[0];
     previousReadings[1] = encoderReadings[1];
-    std::cout << "Left Wheel Radians: " << leftWheelRadians << "\n";
-    std::cout << "Right Wheel Radians: " << rightWheelRadians << "\n";
+    // std::cout << "Left Wheel Radians: " << leftWheelRadians << "\n";
+    // std::cout << "Right Wheel Radians: " << rightWheelRadians << "\n";
     
     float averageRadians = (leftWheelRadians + rightWheelRadians) / 2;
-    std::cout << "Average Radians: " << averageRadians << "\n";
+    // std::cout << "Average Radians: " << averageRadians << "\n";
 
     float currentVelocity = averageRadians / (float(timeStep) / 1000.0f);
     // float currentVelocity = averageDistanceCovered / 0.016;
@@ -35,8 +35,7 @@ void MotionController::calculateCurrentVelocity(){
 void MotionController::adjustVelocity(){
     if(rotating == false){
         motors.powerEngines(targetVelocity, targetVelocity);
-    }
-    else {
+
         if (abs(currentVelocity) - targetVelocity > velocityTolerance){
             if (currentVelocity - targetVelocity < -velocityTolerance){
                 velocityCorrection -= 0.1f;     
@@ -47,26 +46,21 @@ void MotionController::adjustVelocity(){
             
         }
         
-        
-        motors.powerEngines(targetVelocity + velocityCorrection, targetVelocity + velocityCorrection);    
+        motors.powerEngines(targetVelocity + velocityCorrection, targetVelocity + velocityCorrection); 
     }
-    
     
     std::cout << "Target Velocity: " << targetVelocity << "\nVelocity Correction: " << velocityCorrection << "\n";
 }
 
 
-
-
-
 void MotionController::adjustAngle() {
-
     rotating = true;
 
     float current = spatialData.angle;
-    float error = targetAngle - current;
-
     float error = normalizeAngle(targetAngle - current);
+
+    std::cout << "Target Angle " << targetAngle << "\n";
+    std::cout << "Current Angle " << current << "\n";
 
     constexpr float epsilon = 0.02f;
 
@@ -114,4 +108,5 @@ void MotionController::adjustAngle() {
 void MotionController::step(){
         adjustAngle(); 
         adjustVelocity();
+        calculateCurrentVelocity();
 }

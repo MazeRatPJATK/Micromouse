@@ -1,12 +1,13 @@
+
+
+#include "iostream"
+#define _USE_MATH_DEFINES
+#include <cmath>
 #include "../../include/Algorithms/Mapping.hpp"
 #include "./../include/Algorithms/Map.hpp"
 #include "../../include/globals.hpp"
 #include <array>
-#include "cmath"
 #include "../../include/util/Util.hpp"
-
-#include "iostream"
-
 
 constexpr float GRID_CELL_SIZE = 18.0f;
 constexpr float QUADRANT_ANGLE_RAD = 1.57f; // ~90 degrees in radians
@@ -42,11 +43,12 @@ void Mapping::step(){
 
 
     if(exploreStartingTile){  
-    enqueCommandCallback({2,1.57,0,0,nullptr});
-    enqueCommandCallback({2,3.14,0,0,nullptr});
-    enqueCommandCallback({2,-1.57,0,0,nullptr});
-    enqueCommandCallback({2, 0, 0, 0, [this]() { this->rightHandAlgorithm(); }}); 
-    exploreStartingTile = false;
+        std::cout << "im explorin" << std::endl;
+        enqueCommandCallback({2,1.57,0,0,nullptr});
+        // enqueCommandCallback({2,3.14,0,0,nullptr});
+        // enqueCommandCallback({2,-1.57,0,0,nullptr});
+        enqueCommandCallback({2, 0, 0, 0, [this]() { this->rightHandAlgorithm(); }}); 
+        exploreStartingTile = false;
     }
 
 

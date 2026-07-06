@@ -32,7 +32,7 @@ Controller::Controller(ISensors& sensors, MotionController& motionController)
 void Controller::step(){
 
       
-   
+//    std::cout << "im stepping " << std::endl;;
 
     positionEstimator.updateAngleEstimation();
     positionEstimator.updateCoordinateEstimation();
@@ -83,6 +83,7 @@ void Controller::initNewCommand(Command& cmd){
 }
 
 bool Controller::hasFinishedCommand(Command& cmd){
+    std::cout << "im finished \n";
     float epsilon = 0.8f;
     float angleEpsilon = 0.25f;
     bool x_ok = std::fabs(spatialData.x - cmd.targetX) < epsilon;
@@ -102,7 +103,7 @@ bool Controller::hasFinishedCommand(Command& cmd){
     //     std::cout << "\n========\n\n\n=======" <<std::endl;
     //     x = 0;
     // }
-
+    
     return x_ok && y_ok && angle_ok;
 }
 
