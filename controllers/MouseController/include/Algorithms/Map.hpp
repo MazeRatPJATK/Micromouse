@@ -15,6 +15,13 @@ enum WallState{
     UNKNOWN = 'u'
 };
 
+enum Direction{
+    NORTH,
+    EAST,
+    SOUTH,
+    WEST
+};
+
 class Map{
     private:
         //bottom left of finish area
@@ -25,10 +32,14 @@ class Map{
         uint8_t x2;
         uint8_t y2;
 
-        Tile maze[16][16] = {{0}};
+        std::array<std::array<Tile,16>,16> maze = {{0}};
+
+        void putWall(int x, int y, Direction dir, WallState state) ;
+        void printMaze() const;
     public:
         std::array<int,2>  translateCoordinates(int x, int y);
         void putWalls(int x, int y, WallState north, WallState east, WallState south, WallState west);
+        const std::array<WallState,4> getWallState(int x, int y) const;
         
 
 };

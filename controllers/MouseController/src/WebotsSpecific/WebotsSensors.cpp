@@ -1,7 +1,7 @@
 #include "../include/WebotsSpecific/WebotsSensors.hpp"
 #include "../include/globals.hpp"
 
-
+int timestep = 16;
 
 WebotsSensors::WebotsSensors(webots::Robot* robot) {
     distanceSensors[0] = robot->getDistanceSensor("s1");

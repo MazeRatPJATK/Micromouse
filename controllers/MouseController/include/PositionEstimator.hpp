@@ -10,6 +10,12 @@ class PositionEstimator{
         std::array<float,2> encoderReadings = {17.0,17.0};
         float prevLeftDistance = 0;
         float prevRightDistance = 0;
+        void updateAngleEstimationBasedOnEncoders();
+        void correctAngleEstimationBasedOnDistanceSensors();
+
+        void updatePositionEstimationBasedOnEncoders();
+        void correctPositionEstimationBasedOnSensors();
+
     public:
         PositionEstimator(ISensors& sensors);
         void updateAngleEstimation();

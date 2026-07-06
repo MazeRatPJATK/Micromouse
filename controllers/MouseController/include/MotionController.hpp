@@ -18,6 +18,7 @@ class MotionController{
         float angleTolerance = 0.1f;
         float velocityTolerance = 0.1f;
         float targetAngle = 0.0f;
+        float previousError = 0.0f;
         float targetVelocity = 0.0f;
         float currentVelocity = 0.0f;
         float velocityCorrection = 0.0f;

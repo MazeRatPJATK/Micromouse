@@ -5,7 +5,7 @@ EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/project
 EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/floors/protos/RectangleArena.proto"
 
 WorldInfo {
-  basicTimeStep 8
+  basicTimeStep 16
   contactProperties [
     ContactProperties {
       material1 "caster"
@@ -16,8 +16,8 @@ WorldInfo {
   ]
 }
 Viewpoint {
-  orientation -0.5773502691896258 0.5773502691896258 0.5773502691896258 2.0944
-  position 0.0031702054686836723 -0.17949080452793578 0.709466215689894
+  orientation -0.015395828873521953 0.9997675476249589 0.015093679779068843 1.5910316303194958
+  position 0.03815229658823472 -0.48693927762912254 1.7731303283322226
 }
 TexturedBackground {
 }
@@ -99,7 +99,7 @@ Robot {
         }
       ]
       endPoint Solid {
-        translation 2.3330900000000016e-06 -0.042 -5.769630000000005e-07
+        translation 2.3330900000000117e-06 -0.042 -5.769630000000055e-07
         rotation 0.5262196017814098 -0.6015227626333054 0.601051825332068 2.1721173979209545
         children [
           DEF wheel Shape {
@@ -3394,29 +3394,6 @@ Group {
       }
     }
     Solid {
-      translation 0.359999 0.089997 0.025
-      rotation 0 0 1 3.14159
-      children [
-        DEF WALL Shape {
-          appearance PBRAppearance {
-            metalness 0
-          }
-          geometry DEF wall_geometry Box {
-            size 0.168 0.012 0.05
-          }
-        }
-      ]
-      name "wall-horizontal(24)"
-      boundingObject DEF WALL Shape {
-        appearance PBRAppearance {
-          metalness 0
-        }
-        geometry DEF wall_geometry Box {
-          size 0.168 0.012 0.05
-        }
-      }
-    }
-    Solid {
       translation 0.72 0.629997 0.025
       rotation 0 0 1 3.14159
       children [
@@ -3522,6 +3499,29 @@ Group {
         }
       ]
       name "wall-horizontal(15)"
+      boundingObject DEF WALL Shape {
+        appearance PBRAppearance {
+          metalness 0
+        }
+        geometry DEF wall_geometry Box {
+          size 0.168 0.012 0.05
+        }
+      }
+    }
+    Solid {
+      translation 0.36 0.089997 0.025
+      rotation 0 0 1 3.14159
+      children [
+        DEF WALL Shape {
+          appearance PBRAppearance {
+            metalness 0
+          }
+          geometry DEF wall_geometry Box {
+            size 0.168 0.012 0.05
+          }
+        }
+      ]
+      name "wall-horizontal(24)"
       boundingObject DEF WALL Shape {
         appearance PBRAppearance {
           metalness 0
@@ -3992,7 +3992,7 @@ Group {
       }
     }
     Solid {
-      translation 0.99 5.19723e-15 0.025
+      translation 0.99 1.46895e-13 0.025
       rotation 0 0 -1 -1.5707953071795862
       children [
         DEF WALL Shape {
@@ -4005,6 +4005,29 @@ Group {
         }
       ]
       name "wall-vertical(9)"
+      boundingObject DEF WALL Shape {
+        appearance PBRAppearance {
+          metalness 0
+        }
+        geometry DEF wall_geometry Box {
+          size 0.168 0.012 0.05
+        }
+      }
+    }
+    Solid {
+      translation 0.27 7.34123e-07 0.025
+      rotation 0 0 -1 -1.5707953071795862
+      children [
+        DEF WALL Shape {
+          appearance PBRAppearance {
+            metalness 0
+          }
+          geometry DEF wall_geometry Box {
+            size 0.168 0.012 0.05
+          }
+        }
+      ]
+      name "wall-vertical(21)"
       boundingObject DEF WALL Shape {
         appearance PBRAppearance {
           metalness 0
@@ -5040,29 +5063,6 @@ Group {
         }
       ]
       name "wall-vertical(27)"
-      boundingObject DEF WALL Shape {
-        appearance PBRAppearance {
-          metalness 0
-        }
-        geometry DEF wall_geometry Box {
-          size 0.168 0.012 0.05
-        }
-      }
-    }
-    Solid {
-      translation 0.27 -3.67058e-07 0.025
-      rotation 0 0 -1 -1.5707953071795862
-      children [
-        DEF WALL Shape {
-          appearance PBRAppearance {
-            metalness 0
-          }
-          geometry DEF wall_geometry Box {
-            size 0.168 0.012 0.05
-          }
-        }
-      ]
-      name "wall-vertical(21)"
       boundingObject DEF WALL Shape {
         appearance PBRAppearance {
           metalness 0

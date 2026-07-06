@@ -9,19 +9,35 @@
 #include "../MotionController.hpp"
 #include "../Interfaces/ISensors.hpp"
 #include "../PositionEstimator.hpp"
+#include <queue>
+#include <functional>
+
+
+enum ControllerState{
+    IDLE,
+    EXECUTING_COMMAND
+};
+
 
 class Controller{
     public:
         Map map;
         Controller(ISensors& sensors, MotionController& motionController);
         void step();
-
+        std::queue<Command> commandQueue = {};
+        std::queue<Command> interrupts = {};
     private:
+        void enqueCommand(Command cmd);
+        void applyCommands();
+        void initNewCommand(Command& c);
+        bool hasFinishedCommand(Command& c); 
+        const std::queue<Command>& peekCommandQueue() const;
         MotionController& motionController;
         ISensors& sensors;
         Mapping mapper;
         Solving solver;
         PositionEstimator positionEstimator;
+        ControllerState controllerState;
 
 
 

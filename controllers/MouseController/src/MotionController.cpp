@@ -55,29 +55,63 @@ void MotionController::adjustVelocity(){
     std::cout << "Target Velocity: " << targetVelocity << "\nVelocity Correction: " << velocityCorrection << "\n";
 }
 
-void MotionController::adjustAngle(){
+
+
+
+
+void MotionController::adjustAngle() {
 
     rotating = true;
-    float kp = 1;
+
     float current = spatialData.angle;
     float error = targetAngle - current;
 
-    // std::cout << "***********************" << std::endl;
-    std::cout << "Target angle: " << targetAngle << std::endl;
-    std::cout << "Current angle: " << current << std::endl;
+    float error = normalizeAngle(targetAngle - current);
 
-    float speed = kp * error;
-    if(speed < 1){speed = 1;}
+    constexpr float epsilon = 0.02f;
 
-    if(targetAngle - current < 0.01){rotating = false; return;} //instead of 0.1 there should be angleTolerance in the future
-    motors.powerEngines(-speed,speed);
+    if (std::abs(error) < epsilon) {
+        motors.powerEngines(0, 0);
+        rotating = false;
+
+        previousError = error;
+
+        return;
+    }
+
+    // --- PD controller ---
+
+    constexpr float kp = 6.0f;
+    constexpr float kd = 0.5f;
+
+
+    float derivative = (error - previousError) / (0.016f);
+
+    float turn = kp * error + kd * derivative ;
+
+  
+    constexpr float maxTurn = 3.0f;
+    constexpr float minTurn = 0.2f;
+
+    if (turn > maxTurn)
+        turn = maxTurn;
+
+   
+    if (turn < -maxTurn)
+        turn = -maxTurn;
+
+    if (turn > 0 && turn < minTurn)   turn = minTurn;
+    if (turn < 0 && turn > -minTurn)  turn = -minTurn;
+
+
+
+    motors.powerEngines(turn, -turn);
+
+    previousError = error;
 }
 
+
 void MotionController::step(){
-    std::cout << "****************************************\n";
-    // std::cout << "target: " << targetAngle << std::endl;
-    
-    adjustVelocity();
-    calculateCurrentVelocity();
-    adjustAngle(); 
+        adjustAngle(); 
+        adjustVelocity();
 }
