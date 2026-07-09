@@ -43,11 +43,11 @@ void Mapping::step(){
 
 
     if(exploreStartingTile){  
-        std::cout << "im explorin" << std::endl;
-        enqueCommandCallback({2,1.57,0,0,nullptr});
+        if(debugMode) std::cout << "I'm exploring.\n";
+        enqueCommandCallback({4,1.57,0,0,nullptr});
         // enqueCommandCallback({2,3.14,0,0,nullptr});
         // enqueCommandCallback({2,-1.57,0,0,nullptr});
-        enqueCommandCallback({2, 0, 0, 0, [this]() { this->rightHandAlgorithm(); }}); 
+        enqueCommandCallback({4, 0, 0, 0, [this]() { this->rightHandAlgorithm(); }}); 
         exploreStartingTile = false;
     }
 
@@ -78,7 +78,7 @@ void Mapping::rightHandAlgorithm(){
         // std::cout << "no right wall" << std::endl;
         float targetAngle = normalizeAngle(snapToRightAngle(spatialData.angle) + 1.57f);
         enqueCommandCallback({
-    2,
+    4,
     targetAngle,
     spatialData.x,
     spatialData.y,
@@ -88,7 +88,7 @@ void Mapping::rightHandAlgorithm(){
         auto [x, y] = getNextCellTarget();
 
         enqueCommandCallback({
-            2,
+            4,
             targetAngle,
             x,
             y,
@@ -101,7 +101,7 @@ void Mapping::rightHandAlgorithm(){
 {
        float targetAngle = normalizeAngle(snapToRightAngle(spatialData.angle) - 1.57f);
         enqueCommandCallback({
-    2,
+    4,
     targetAngle,
     spatialData.x,
     spatialData.y,
@@ -112,7 +112,7 @@ void Mapping::rightHandAlgorithm(){
     }
     else{
         auto [x, y] = getNextCellTarget();
-        enqueCommandCallback({2,snapToRightAngle(spatialData.angle), x, y, [this]() { this->rightHandAlgorithm(); }});
+        enqueCommandCallback({4,snapToRightAngle(spatialData.angle), x, y, [this]() { this->rightHandAlgorithm(); }});
     } 
 
 

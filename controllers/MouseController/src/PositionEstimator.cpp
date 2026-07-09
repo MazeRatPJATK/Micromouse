@@ -32,8 +32,8 @@ void PositionEstimator::updatePositionEstimationBasedOnEncoders(){
 }
 
 void PositionEstimator::correctPositionEstimationBasedOnSensors(){
-    constexpr float WALL_DETECTION_THRESHOLD_MM = 750.0f;
-    constexpr float epsilon = 7.5f;
+    constexpr float WALL_DETECTION_THRESHOLD_MM = 650.0f;
+    constexpr float epsilon = 2.5f;
 
 
     std::array<float,4> readings = sensors.getDistanceReadings();
@@ -46,8 +46,8 @@ void PositionEstimator::correctPositionEstimationBasedOnSensors(){
     bool wallInFrontPresent = leftForwardReading < WALL_DETECTION_THRESHOLD_MM &&  rightForwardReading < WALL_DETECTION_THRESHOLD_MM;
 
     std::array<int,2> currentGridCoordinates = {
-        static_cast<int>(std::round((spatialData.x) / GRID_CELL_SIZE)),
-        static_cast<int>(std::round((spatialData.y) / GRID_CELL_SIZE))
+        static_cast<int>(std::round(spatialData.x / GRID_CELL_SIZE)),
+        static_cast<int>(std::round(spatialData.y / GRID_CELL_SIZE))
     };
 
     if(wallsOnBothSidesPresent && !wallInFrontPresent){
@@ -84,7 +84,7 @@ void PositionEstimator::updateAngleEstimationBasedOnEncoders() {
 void PositionEstimator::correctAngleEstimationBasedOnDistanceSensors() {
 
     constexpr float WALL_DETECTION_THRESHOLD_MM = 650.0f;
-    constexpr float epsilon = 7.5f;
+    constexpr float epsilon = 2.5f;
 
 
     std::array<float,4> readings = sensors.getDistanceReadings();

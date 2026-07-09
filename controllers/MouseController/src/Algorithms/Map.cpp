@@ -102,5 +102,5 @@ void Map::printMaze() const {
         else if (south == ABSENT)  std::cout << "   ";
         else                       std::cout << "···";
     }
-    std::cout << "+\n";
+    std::cout << "+\n.\n";
 }
