@@ -29,7 +29,7 @@ void MotionController::calculateCurrentVelocity(){
 
     float currentVelocity = averageRadians / (float(timeStep) / 1000.0f);
     // float currentVelocity = averageDistanceCovered / 0.016;
-    if(debugMode) std::cout << "Average Velocity [rad/s]: " << currentVelocity << " rad/s \n";
+    if(debugMode[0]) std::cout << "Average Velocity [rad/s]: " << currentVelocity << " rad/s \n";
 }
 
 void MotionController::adjustVelocity(){
@@ -49,7 +49,7 @@ void MotionController::adjustVelocity(){
         motors.powerEngines(targetVelocity + velocityCorrection, targetVelocity + velocityCorrection); 
     }
     
-    if(debugMode) std::cout << "Target Velocity: " << targetVelocity << "\nVelocity Correction: " << velocityCorrection << "\n";
+    if(debugMode[0]) std::cout << "Target Velocity: " << targetVelocity << "\nVelocity Correction: " << velocityCorrection << "\n";
 }
 
 
@@ -58,9 +58,29 @@ void MotionController::adjustAngle() {
 
     float current = spatialData.angle;
     float error = normalizeAngle(targetAngle - current);
+//0.000796344
+    if (abs(targetAngle) < 0.01f) {
+        targetAngle = 0.0f;
+    }
+    else if (abs(targetAngle - 1.57f) < 0.01f) {
+        if (targetAngle < 0.0f) {
+            targetAngle = -1.57f;
+        }
+        else {
+            targetAngle = 1.57f;
+        }
+    }
+    else if (abs(targetAngle - 3.13f) < 0.01f) {
+        if (targetAngle < 0.0f) {
+            targetAngle = -3.13f;
+        }
+        else {
+            targetAngle = 3.13f;
+        }
+    }
 
-    if(debugMode) std::cout << "Target Angle " << targetAngle << "\n";
-    if(debugMode) std::cout << "Current Angle " << current << "\n";
+    if(debugMode[0]) std::cout << "\n.\nTarget Angle " << targetAngle << "\n";
+    if(debugMode[0]) std::cout << "Current Angle " << current << "\n";
 
     constexpr float epsilon = 0.01f;
 

@@ -83,7 +83,7 @@ void Controller::initNewCommand(Command& cmd){
 }
 
 bool Controller::hasFinishedCommand(Command& cmd){
-    if(debugMode) std::cout << "I'm finished.\n";
+    if(debugMode[0]) std::cout << "I'm finished.\n";
     float epsilon = 0.8f;
     float angleEpsilon = 0.01f;
     bool x_ok = std::fabs(spatialData.x - cmd.targetX) < epsilon;

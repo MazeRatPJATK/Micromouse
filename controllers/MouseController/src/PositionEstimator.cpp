@@ -2,7 +2,7 @@
 #include <array>
 #include "globals.hpp"
 #include <iostream>
-#include "cmath"
+#include <cmath>
 #include "../include/util/Util.hpp"
 
 constexpr double PI = 3.141592;

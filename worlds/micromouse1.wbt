@@ -16,8 +16,8 @@ WorldInfo {
   ]
 }
 Viewpoint {
-  orientation -0.015395828873521953 0.9997675476249589 0.015093679779068843 1.5910316303194958
-  position 0.03815229658823472 -0.48693927762912254 1.7731303283322226
+  orientation -0.5773502691896258 0.5773502691896258 0.5773502691896258 2.0944
+  position -1.08557 1.08203 1.4869342191274146
 }
 TexturedBackground {
 }
@@ -28,7 +28,7 @@ RectangleArena {
   floorTileSize 0.36 0.36
 }
 Robot {
-  translation 0.00316901 -0.179492 0.0214095
+  translation -1.08557 1.08203 0.0214095
   rotation 0 0 1 -0.0013653071795864946
   children [
     DEF caster_wheel Solid {
@@ -1440,6 +1440,650 @@ Group {
       boundingObject USE LATTICE
     }
     Solid {
+      translation -1.17 0.99 0.025
+      children [
+        DEF LATTICE Shape {
+          appearance PBRAppearance {
+          }
+          geometry Box {
+            size 0.012 0.012 0.05
+          }
+        }
+      ]
+      name "pillar(153)"
+      boundingObject USE LATTICE
+    }
+    Solid {
+      translation -1.17 1.17 0.025
+      children [
+        DEF LATTICE Shape {
+          appearance PBRAppearance {
+          }
+          geometry Box {
+            size 0.012 0.012 0.05
+          }
+        }
+      ]
+      name "pillar(154)"
+      boundingObject USE LATTICE
+    }
+    Solid {
+      translation -0.99 1.17 0.025
+      children [
+        DEF LATTICE Shape {
+          appearance PBRAppearance {
+          }
+          geometry Box {
+            size 0.012 0.012 0.05
+          }
+        }
+      ]
+      name "pillar(155)"
+      boundingObject USE LATTICE
+    }
+    Solid {
+      translation -0.81 1.17 0.025
+      children [
+        DEF LATTICE Shape {
+          appearance PBRAppearance {
+          }
+          geometry Box {
+            size 0.012 0.012 0.05
+          }
+        }
+      ]
+      name "pillar(156)"
+      boundingObject USE LATTICE
+    }
+    Solid {
+      translation -0.63 1.17 0.025
+      children [
+        DEF LATTICE Shape {
+          appearance PBRAppearance {
+          }
+          geometry Box {
+            size 0.012 0.012 0.05
+          }
+        }
+      ]
+      name "pillar(157)"
+      boundingObject USE LATTICE
+    }
+    Solid {
+      translation -0.45 1.17 0.025
+      children [
+        DEF LATTICE Shape {
+          appearance PBRAppearance {
+          }
+          geometry Box {
+            size 0.012 0.012 0.05
+          }
+        }
+      ]
+      name "pillar(158)"
+      boundingObject USE LATTICE
+    }
+    Solid {
+      translation -0.27 1.17 0.025
+      children [
+        DEF LATTICE Shape {
+          appearance PBRAppearance {
+          }
+          geometry Box {
+            size 0.012 0.012 0.05
+          }
+        }
+      ]
+      name "pillar(159)"
+      boundingObject USE LATTICE
+    }
+    Solid {
+      translation -0.09 1.17 0.025
+      children [
+        DEF LATTICE Shape {
+          appearance PBRAppearance {
+          }
+          geometry Box {
+            size 0.012 0.012 0.05
+          }
+        }
+      ]
+      name "pillar(160)"
+      boundingObject USE LATTICE
+    }
+    Solid {
+      translation 0.09 1.17 0.025
+      children [
+        DEF LATTICE Shape {
+          appearance PBRAppearance {
+          }
+          geometry Box {
+            size 0.012 0.012 0.05
+          }
+        }
+      ]
+      name "pillar(161)"
+      boundingObject USE LATTICE
+    }
+    Solid {
+      translation 0.27 1.17 0.025
+      children [
+        DEF LATTICE Shape {
+          appearance PBRAppearance {
+          }
+          geometry Box {
+            size 0.012 0.012 0.05
+          }
+        }
+      ]
+      name "pillar(162)"
+      boundingObject USE LATTICE
+    }
+    Solid {
+      translation 0.45 1.17 0.025
+      children [
+        DEF LATTICE Shape {
+          appearance PBRAppearance {
+          }
+          geometry Box {
+            size 0.012 0.012 0.05
+          }
+        }
+      ]
+      name "pillar(163)"
+      boundingObject USE LATTICE
+    }
+    Solid {
+      translation 0.63 1.17 0.025
+      children [
+        DEF LATTICE Shape {
+          appearance PBRAppearance {
+          }
+          geometry Box {
+            size 0.012 0.012 0.05
+          }
+        }
+      ]
+      name "pillar(164)"
+      boundingObject USE LATTICE
+    }
+    Solid {
+      translation 0.81 1.17 0.025
+      children [
+        DEF LATTICE Shape {
+          appearance PBRAppearance {
+          }
+          geometry Box {
+            size 0.012 0.012 0.05
+          }
+        }
+      ]
+      name "pillar(165)"
+      boundingObject USE LATTICE
+    }
+    Solid {
+      translation 0.99 1.17 0.025
+      children [
+        DEF LATTICE Shape {
+          appearance PBRAppearance {
+          }
+          geometry Box {
+            size 0.012 0.012 0.05
+          }
+        }
+      ]
+      name "pillar(166)"
+      boundingObject USE LATTICE
+    }
+    Solid {
+      translation 1.17 1.17 0.025
+      children [
+        DEF LATTICE Shape {
+          appearance PBRAppearance {
+          }
+          geometry Box {
+            size 0.012 0.012 0.05
+          }
+        }
+      ]
+      name "pillar(167)"
+      boundingObject USE LATTICE
+    }
+    Solid {
+      translation 1.17 0.99 0.025
+      children [
+        DEF LATTICE Shape {
+          appearance PBRAppearance {
+          }
+          geometry Box {
+            size 0.012 0.012 0.05
+          }
+        }
+      ]
+      name "pillar(168)"
+      boundingObject USE LATTICE
+    }
+    Solid {
+      translation 1.17 0.81 0.025
+      children [
+        DEF LATTICE Shape {
+          appearance PBRAppearance {
+          }
+          geometry Box {
+            size 0.012 0.012 0.05
+          }
+        }
+      ]
+      name "pillar(169)"
+      boundingObject USE LATTICE
+    }
+    Solid {
+      translation 1.17 0.63 0.025
+      children [
+        DEF LATTICE Shape {
+          appearance PBRAppearance {
+          }
+          geometry Box {
+            size 0.012 0.012 0.05
+          }
+        }
+      ]
+      name "pillar(170)"
+      boundingObject USE LATTICE
+    }
+    Solid {
+      translation 1.17 0.45 0.025
+      children [
+        DEF LATTICE Shape {
+          appearance PBRAppearance {
+          }
+          geometry Box {
+            size 0.012 0.012 0.05
+          }
+        }
+      ]
+      name "pillar(171)"
+      boundingObject USE LATTICE
+    }
+    Solid {
+      translation 1.17 0.09 0.025
+      children [
+        DEF LATTICE Shape {
+          appearance PBRAppearance {
+          }
+          geometry Box {
+            size 0.012 0.012 0.05
+          }
+        }
+      ]
+      name "pillar(172)"
+      boundingObject USE LATTICE
+    }
+    Solid {
+      translation 1.17 -0.09 0.025
+      children [
+        DEF LATTICE Shape {
+          appearance PBRAppearance {
+          }
+          geometry Box {
+            size 0.012 0.012 0.05
+          }
+        }
+      ]
+      name "pillar(173)"
+      boundingObject USE LATTICE
+    }
+    Solid {
+      translation 1.17 -0.45 0.025
+      children [
+        DEF LATTICE Shape {
+          appearance PBRAppearance {
+          }
+          geometry Box {
+            size 0.012 0.012 0.05
+          }
+        }
+      ]
+      name "pillar(174)"
+      boundingObject USE LATTICE
+    }
+    Solid {
+      translation 1.17 -0.63 0.025
+      children [
+        DEF LATTICE Shape {
+          appearance PBRAppearance {
+          }
+          geometry Box {
+            size 0.012 0.012 0.05
+          }
+        }
+      ]
+      name "pillar(175)"
+      boundingObject USE LATTICE
+    }
+    Solid {
+      translation 1.17 -0.99 0.025
+      children [
+        DEF LATTICE Shape {
+          appearance PBRAppearance {
+          }
+          geometry Box {
+            size 0.012 0.012 0.05
+          }
+        }
+      ]
+      name "pillar(176)"
+      boundingObject USE LATTICE
+    }
+    Solid {
+      translation 1.17 -1.17 0.025
+      children [
+        DEF LATTICE Shape {
+          appearance PBRAppearance {
+          }
+          geometry Box {
+            size 0.012 0.012 0.05
+          }
+        }
+      ]
+      name "pillar(177)"
+      boundingObject USE LATTICE
+    }
+    Solid {
+      translation 0.99 -1.17 0.025
+      children [
+        DEF LATTICE Shape {
+          appearance PBRAppearance {
+          }
+          geometry Box {
+            size 0.012 0.012 0.05
+          }
+        }
+      ]
+      name "pillar(178)"
+      boundingObject USE LATTICE
+    }
+    Solid {
+      translation 0.81 -1.17 0.025
+      children [
+        DEF LATTICE Shape {
+          appearance PBRAppearance {
+          }
+          geometry Box {
+            size 0.012 0.012 0.05
+          }
+        }
+      ]
+      name "pillar(179)"
+      boundingObject USE LATTICE
+    }
+    Solid {
+      translation 0.63 -1.17 0.025
+      children [
+        DEF LATTICE Shape {
+          appearance PBRAppearance {
+          }
+          geometry Box {
+            size 0.012 0.012 0.05
+          }
+        }
+      ]
+      name "pillar(180)"
+      boundingObject USE LATTICE
+    }
+    Solid {
+      translation 0.45 -1.17 0.025
+      children [
+        DEF LATTICE Shape {
+          appearance PBRAppearance {
+          }
+          geometry Box {
+            size 0.012 0.012 0.05
+          }
+        }
+      ]
+      name "pillar(181)"
+      boundingObject USE LATTICE
+    }
+    Solid {
+      translation 0.27 -1.17 0.025
+      children [
+        DEF LATTICE Shape {
+          appearance PBRAppearance {
+          }
+          geometry Box {
+            size 0.012 0.012 0.05
+          }
+        }
+      ]
+      name "pillar(182)"
+      boundingObject USE LATTICE
+    }
+    Solid {
+      translation 0.09 -1.17 0.025
+      children [
+        DEF LATTICE Shape {
+          appearance PBRAppearance {
+          }
+          geometry Box {
+            size 0.012 0.012 0.05
+          }
+        }
+      ]
+      name "pillar(183)"
+      boundingObject USE LATTICE
+    }
+    Solid {
+      translation -0.09 -1.17 0.025
+      children [
+        DEF LATTICE Shape {
+          appearance PBRAppearance {
+          }
+          geometry Box {
+            size 0.012 0.012 0.05
+          }
+        }
+      ]
+      name "pillar(184)"
+      boundingObject USE LATTICE
+    }
+    Solid {
+      translation -0.45 -1.17 0.025
+      children [
+        DEF LATTICE Shape {
+          appearance PBRAppearance {
+          }
+          geometry Box {
+            size 0.012 0.012 0.05
+          }
+        }
+      ]
+      name "pillar(185)"
+      boundingObject USE LATTICE
+    }
+    Solid {
+      translation -0.99 -1.17 0.025
+      children [
+        DEF LATTICE Shape {
+          appearance PBRAppearance {
+          }
+          geometry Box {
+            size 0.012 0.012 0.05
+          }
+        }
+      ]
+      name "pillar(186)"
+      boundingObject USE LATTICE
+    }
+    Solid {
+      translation -1.17 -1.17 0.025
+      children [
+        DEF LATTICE Shape {
+          appearance PBRAppearance {
+          }
+          geometry Box {
+            size 0.012 0.012 0.05
+          }
+        }
+      ]
+      name "pillar(187)"
+      boundingObject USE LATTICE
+    }
+    Solid {
+      translation -1.17 -0.99 0.025
+      children [
+        DEF LATTICE Shape {
+          appearance PBRAppearance {
+          }
+          geometry Box {
+            size 0.012 0.012 0.05
+          }
+        }
+      ]
+      name "pillar(188)"
+      boundingObject USE LATTICE
+    }
+    Solid {
+      translation -1.17 -0.81 0.025
+      children [
+        DEF LATTICE Shape {
+          appearance PBRAppearance {
+          }
+          geometry Box {
+            size 0.012 0.012 0.05
+          }
+        }
+      ]
+      name "pillar(189)"
+      boundingObject USE LATTICE
+    }
+    Solid {
+      translation -1.17 -0.63 0.025
+      children [
+        DEF LATTICE Shape {
+          appearance PBRAppearance {
+          }
+          geometry Box {
+            size 0.012 0.012 0.05
+          }
+        }
+      ]
+      name "pillar(190)"
+      boundingObject USE LATTICE
+    }
+    Solid {
+      translation -1.17 -0.45 0.025
+      children [
+        DEF LATTICE Shape {
+          appearance PBRAppearance {
+          }
+          geometry Box {
+            size 0.012 0.012 0.05
+          }
+        }
+      ]
+      name "pillar(191)"
+      boundingObject USE LATTICE
+    }
+    Solid {
+      translation -1.17 -0.27 0.025
+      children [
+        DEF LATTICE Shape {
+          appearance PBRAppearance {
+          }
+          geometry Box {
+            size 0.012 0.012 0.05
+          }
+        }
+      ]
+      name "pillar(192)"
+      boundingObject USE LATTICE
+    }
+    Solid {
+      translation -1.17 -0.09 0.025
+      children [
+        DEF LATTICE Shape {
+          appearance PBRAppearance {
+          }
+          geometry Box {
+            size 0.012 0.012 0.05
+          }
+        }
+      ]
+      name "pillar(193)"
+      boundingObject USE LATTICE
+    }
+    Solid {
+      translation -1.17 0.09 0.025
+      children [
+        DEF LATTICE Shape {
+          appearance PBRAppearance {
+          }
+          geometry Box {
+            size 0.012 0.012 0.05
+          }
+        }
+      ]
+      name "pillar(194)"
+      boundingObject USE LATTICE
+    }
+    Solid {
+      translation -1.17 0.27 0.025
+      children [
+        DEF LATTICE Shape {
+          appearance PBRAppearance {
+          }
+          geometry Box {
+            size 0.012 0.012 0.05
+          }
+        }
+      ]
+      name "pillar(195)"
+      boundingObject USE LATTICE
+    }
+    Solid {
+      translation -1.17 0.45 0.025
+      children [
+        DEF LATTICE Shape {
+          appearance PBRAppearance {
+          }
+          geometry Box {
+            size 0.012 0.012 0.05
+          }
+        }
+      ]
+      name "pillar(196)"
+      boundingObject USE LATTICE
+    }
+    Solid {
+      translation -1.17 0.63 0.025
+      children [
+        DEF LATTICE Shape {
+          appearance PBRAppearance {
+          }
+          geometry Box {
+            size 0.012 0.012 0.05
+          }
+        }
+      ]
+      name "pillar(197)"
+      boundingObject USE LATTICE
+    }
+    Solid {
+      translation -1.17 0.81 0.025
+      children [
+        DEF LATTICE Shape {
+          appearance PBRAppearance {
+          }
+          geometry Box {
+            size 0.012 0.012 0.05
+          }
+        }
+      ]
+      name "pillar(198)"
+      boundingObject USE LATTICE
+    }
+    Solid {
       translation -0.99 0.81 0.025
       children [
         DEF LATTICE Shape {
@@ -2359,6 +3003,328 @@ Group {
       }
     }
     Solid {
+      translation 0.9 1.17 0.025
+      rotation 0 0 1 3.14159
+      children [
+        DEF WALL Shape {
+          appearance PBRAppearance {
+            metalness 0
+          }
+          geometry DEF wall_geometry Box {
+            size 0.168 0.012 0.05
+          }
+        }
+      ]
+      name "wall-horizontal(83)"
+      boundingObject DEF WALL Shape {
+        appearance PBRAppearance {
+          metalness 0
+        }
+        geometry DEF wall_geometry Box {
+          size 0.168 0.012 0.05
+        }
+      }
+    }
+    Solid {
+      translation 1.08 1.17 0.025
+      rotation 0 0 1 3.14159
+      children [
+        DEF WALL Shape {
+          appearance PBRAppearance {
+            metalness 0
+          }
+          geometry DEF wall_geometry Box {
+            size 0.168 0.012 0.05
+          }
+        }
+      ]
+      name "wall-horizontal(84)"
+      boundingObject DEF WALL Shape {
+        appearance PBRAppearance {
+          metalness 0
+        }
+        geometry DEF wall_geometry Box {
+          size 0.168 0.012 0.05
+        }
+      }
+    }
+    Solid {
+      translation 0.72 1.17 0.025
+      rotation 0 0 1 3.14159
+      children [
+        DEF WALL Shape {
+          appearance PBRAppearance {
+            metalness 0
+          }
+          geometry DEF wall_geometry Box {
+            size 0.168 0.012 0.05
+          }
+        }
+      ]
+      name "wall-horizontal(85)"
+      boundingObject DEF WALL Shape {
+        appearance PBRAppearance {
+          metalness 0
+        }
+        geometry DEF wall_geometry Box {
+          size 0.168 0.012 0.05
+        }
+      }
+    }
+    Solid {
+      translation 0.54 1.17 0.025
+      rotation 0 0 1 3.14159
+      children [
+        DEF WALL Shape {
+          appearance PBRAppearance {
+            metalness 0
+          }
+          geometry DEF wall_geometry Box {
+            size 0.168 0.012 0.05
+          }
+        }
+      ]
+      name "wall-horizontal(86)"
+      boundingObject DEF WALL Shape {
+        appearance PBRAppearance {
+          metalness 0
+        }
+        geometry DEF wall_geometry Box {
+          size 0.168 0.012 0.05
+        }
+      }
+    }
+    Solid {
+      translation 0.54 1.17 0.025
+      rotation 0 0 1 3.14159
+      children [
+        DEF WALL Shape {
+          appearance PBRAppearance {
+            metalness 0
+          }
+          geometry DEF wall_geometry Box {
+            size 0.168 0.012 0.05
+          }
+        }
+      ]
+      name "wall-horizontal(87)"
+      boundingObject DEF WALL Shape {
+        appearance PBRAppearance {
+          metalness 0
+        }
+        geometry DEF wall_geometry Box {
+          size 0.168 0.012 0.05
+        }
+      }
+    }
+    Solid {
+      translation 0.36 1.17 0.025
+      rotation 0 0 1 3.14159
+      children [
+        DEF WALL Shape {
+          appearance PBRAppearance {
+            metalness 0
+          }
+          geometry DEF wall_geometry Box {
+            size 0.168 0.012 0.05
+          }
+        }
+      ]
+      name "wall-horizontal(88)"
+      boundingObject DEF WALL Shape {
+        appearance PBRAppearance {
+          metalness 0
+        }
+        geometry DEF wall_geometry Box {
+          size 0.168 0.012 0.05
+        }
+      }
+    }
+    Solid {
+      translation 0.18 1.17 0.025
+      rotation 0 0 1 3.14159
+      children [
+        DEF WALL Shape {
+          appearance PBRAppearance {
+            metalness 0
+          }
+          geometry DEF wall_geometry Box {
+            size 0.168 0.012 0.05
+          }
+        }
+      ]
+      name "wall-horizontal(89)"
+      boundingObject DEF WALL Shape {
+        appearance PBRAppearance {
+          metalness 0
+        }
+        geometry DEF wall_geometry Box {
+          size 0.168 0.012 0.05
+        }
+      }
+    }
+    Solid {
+      translation 3.52079e-14 1.17 0.025
+      rotation 0 0 1 3.14159
+      children [
+        DEF WALL Shape {
+          appearance PBRAppearance {
+            metalness 0
+          }
+          geometry DEF wall_geometry Box {
+            size 0.168 0.012 0.05
+          }
+        }
+      ]
+      name "wall-horizontal(90)"
+      boundingObject DEF WALL Shape {
+        appearance PBRAppearance {
+          metalness 0
+        }
+        geometry DEF wall_geometry Box {
+          size 0.168 0.012 0.05
+        }
+      }
+    }
+    Solid {
+      translation -0.18 1.17 0.025
+      rotation 0 0 1 3.14159
+      children [
+        DEF WALL Shape {
+          appearance PBRAppearance {
+            metalness 0
+          }
+          geometry DEF wall_geometry Box {
+            size 0.168 0.012 0.05
+          }
+        }
+      ]
+      name "wall-horizontal(91)"
+      boundingObject DEF WALL Shape {
+        appearance PBRAppearance {
+          metalness 0
+        }
+        geometry DEF wall_geometry Box {
+          size 0.168 0.012 0.05
+        }
+      }
+    }
+    Solid {
+      translation -0.36 1.17 0.025
+      rotation 0 0 1 3.14159
+      children [
+        DEF WALL Shape {
+          appearance PBRAppearance {
+            metalness 0
+          }
+          geometry DEF wall_geometry Box {
+            size 0.168 0.012 0.05
+          }
+        }
+      ]
+      name "wall-horizontal(92)"
+      boundingObject DEF WALL Shape {
+        appearance PBRAppearance {
+          metalness 0
+        }
+        geometry DEF wall_geometry Box {
+          size 0.168 0.012 0.05
+        }
+      }
+    }
+    Solid {
+      translation -0.54 1.17 0.025
+      rotation 0 0 1 3.14159
+      children [
+        DEF WALL Shape {
+          appearance PBRAppearance {
+            metalness 0
+          }
+          geometry DEF wall_geometry Box {
+            size 0.168 0.012 0.05
+          }
+        }
+      ]
+      name "wall-horizontal(93)"
+      boundingObject DEF WALL Shape {
+        appearance PBRAppearance {
+          metalness 0
+        }
+        geometry DEF wall_geometry Box {
+          size 0.168 0.012 0.05
+        }
+      }
+    }
+    Solid {
+      translation -0.72 1.17 0.025
+      rotation 0 0 1 3.14159
+      children [
+        DEF WALL Shape {
+          appearance PBRAppearance {
+            metalness 0
+          }
+          geometry DEF wall_geometry Box {
+            size 0.168 0.012 0.05
+          }
+        }
+      ]
+      name "wall-horizontal(94)"
+      boundingObject DEF WALL Shape {
+        appearance PBRAppearance {
+          metalness 0
+        }
+        geometry DEF wall_geometry Box {
+          size 0.168 0.012 0.05
+        }
+      }
+    }
+    Solid {
+      translation -0.9 1.17 0.025
+      rotation 0 0 1 3.14159
+      children [
+        DEF WALL Shape {
+          appearance PBRAppearance {
+            metalness 0
+          }
+          geometry DEF wall_geometry Box {
+            size 0.168 0.012 0.05
+          }
+        }
+      ]
+      name "wall-horizontal(95)"
+      boundingObject DEF WALL Shape {
+        appearance PBRAppearance {
+          metalness 0
+        }
+        geometry DEF wall_geometry Box {
+          size 0.168 0.012 0.05
+        }
+      }
+    }
+    Solid {
+      translation -1.08 1.17 0.025
+      rotation 0 0 1 3.14159
+      children [
+        DEF WALL Shape {
+          appearance PBRAppearance {
+            metalness 0
+          }
+          geometry DEF wall_geometry Box {
+            size 0.168 0.012 0.05
+          }
+        }
+      ]
+      name "wall-horizontal(96)"
+      boundingObject DEF WALL Shape {
+        appearance PBRAppearance {
+          metalness 0
+        }
+        geometry DEF wall_geometry Box {
+          size 0.168 0.012 0.05
+        }
+      }
+    }
+    Solid {
       translation 0.54 0.809997 0.025
       rotation 0 0 1 3.14159
       children [
@@ -3131,6 +4097,305 @@ Group {
         }
       ]
       name "wall-horizontal(57)"
+      boundingObject DEF WALL Shape {
+        appearance PBRAppearance {
+          metalness 0
+        }
+        geometry DEF wall_geometry Box {
+          size 0.168 0.012 0.05
+        }
+      }
+    }
+    Solid {
+      translation -1.08 -1.17 0.025
+      rotation 0 0 1 3.14159
+      children [
+        DEF WALL Shape {
+          appearance PBRAppearance {
+            metalness 0
+          }
+          geometry DEF wall_geometry Box {
+            size 0.168 0.012 0.05
+          }
+        }
+      ]
+      name "wall-horizontal(70)"
+      boundingObject DEF WALL Shape {
+        appearance PBRAppearance {
+          metalness 0
+        }
+        geometry DEF wall_geometry Box {
+          size 0.168 0.012 0.05
+        }
+      }
+    }
+    Solid {
+      translation -0.9 -1.17 0.025
+      rotation 0 0 1 3.14159
+      children [
+        DEF WALL Shape {
+          appearance PBRAppearance {
+            metalness 0
+          }
+          geometry DEF wall_geometry Box {
+            size 0.168 0.012 0.05
+          }
+        }
+      ]
+      name "wall-horizontal(71)"
+      boundingObject DEF WALL Shape {
+        appearance PBRAppearance {
+          metalness 0
+        }
+        geometry DEF wall_geometry Box {
+          size 0.168 0.012 0.05
+        }
+      }
+    }
+    Solid {
+      translation -0.72 -1.17 0.025
+      rotation 0 0 1 3.14159
+      children [
+        DEF WALL Shape {
+          appearance PBRAppearance {
+            metalness 0
+          }
+          geometry DEF wall_geometry Box {
+            size 0.168 0.012 0.05
+          }
+        }
+      ]
+      name "wall-horizontal(72)"
+      boundingObject DEF WALL Shape {
+        appearance PBRAppearance {
+          metalness 0
+        }
+        geometry DEF wall_geometry Box {
+          size 0.168 0.012 0.05
+        }
+      }
+    }
+    Solid {
+      translation -0.54 -1.17 0.025
+      rotation 0 0 1 3.14159
+      children [
+        DEF WALL Shape {
+          appearance PBRAppearance {
+            metalness 0
+          }
+          geometry DEF wall_geometry Box {
+            size 0.168 0.012 0.05
+          }
+        }
+      ]
+      name "wall-horizontal(73)"
+      boundingObject DEF WALL Shape {
+        appearance PBRAppearance {
+          metalness 0
+        }
+        geometry DEF wall_geometry Box {
+          size 0.168 0.012 0.05
+        }
+      }
+    }
+    Solid {
+      translation -0.36 -1.17 0.025
+      rotation 0 0 1 3.14159
+      children [
+        DEF WALL Shape {
+          appearance PBRAppearance {
+            metalness 0
+          }
+          geometry DEF wall_geometry Box {
+            size 0.168 0.012 0.05
+          }
+        }
+      ]
+      name "wall-horizontal(74)"
+      boundingObject DEF WALL Shape {
+        appearance PBRAppearance {
+          metalness 0
+        }
+        geometry DEF wall_geometry Box {
+          size 0.168 0.012 0.05
+        }
+      }
+    }
+    Solid {
+      translation -0.18 -1.17 0.025
+      rotation 0 0 1 3.14159
+      children [
+        DEF WALL Shape {
+          appearance PBRAppearance {
+            metalness 0
+          }
+          geometry DEF wall_geometry Box {
+            size 0.168 0.012 0.05
+          }
+        }
+      ]
+      name "wall-horizontal(75)"
+      boundingObject DEF WALL Shape {
+        appearance PBRAppearance {
+          metalness 0
+        }
+        geometry DEF wall_geometry Box {
+          size 0.168 0.012 0.05
+        }
+      }
+    }
+    Solid {
+      translation 3.52079e-14 -1.17 0.025
+      rotation 0 0 1 3.14159
+      children [
+        DEF WALL Shape {
+          appearance PBRAppearance {
+            metalness 0
+          }
+          geometry DEF wall_geometry Box {
+            size 0.168 0.012 0.05
+          }
+        }
+      ]
+      name "wall-horizontal(76)"
+      boundingObject DEF WALL Shape {
+        appearance PBRAppearance {
+          metalness 0
+        }
+        geometry DEF wall_geometry Box {
+          size 0.168 0.012 0.05
+        }
+      }
+    }
+    Solid {
+      translation 0.18 -1.17 0.025
+      rotation 0 0 1 3.14159
+      children [
+        DEF WALL Shape {
+          appearance PBRAppearance {
+            metalness 0
+          }
+          geometry DEF wall_geometry Box {
+            size 0.168 0.012 0.05
+          }
+        }
+      ]
+      name "wall-horizontal(77)"
+      boundingObject DEF WALL Shape {
+        appearance PBRAppearance {
+          metalness 0
+        }
+        geometry DEF wall_geometry Box {
+          size 0.168 0.012 0.05
+        }
+      }
+    }
+    Solid {
+      translation 0.36 -1.17 0.025
+      rotation 0 0 1 3.14159
+      children [
+        DEF WALL Shape {
+          appearance PBRAppearance {
+            metalness 0
+          }
+          geometry DEF wall_geometry Box {
+            size 0.168 0.012 0.05
+          }
+        }
+      ]
+      name "wall-horizontal(78)"
+      boundingObject DEF WALL Shape {
+        appearance PBRAppearance {
+          metalness 0
+        }
+        geometry DEF wall_geometry Box {
+          size 0.168 0.012 0.05
+        }
+      }
+    }
+    Solid {
+      translation 0.54 -1.17 0.025
+      rotation 0 0 1 3.14159
+      children [
+        DEF WALL Shape {
+          appearance PBRAppearance {
+            metalness 0
+          }
+          geometry DEF wall_geometry Box {
+            size 0.168 0.012 0.05
+          }
+        }
+      ]
+      name "wall-horizontal(79)"
+      boundingObject DEF WALL Shape {
+        appearance PBRAppearance {
+          metalness 0
+        }
+        geometry DEF wall_geometry Box {
+          size 0.168 0.012 0.05
+        }
+      }
+    }
+    Solid {
+      translation 0.72 -1.17 0.025
+      rotation 0 0 1 3.14159
+      children [
+        DEF WALL Shape {
+          appearance PBRAppearance {
+            metalness 0
+          }
+          geometry DEF wall_geometry Box {
+            size 0.168 0.012 0.05
+          }
+        }
+      ]
+      name "wall-horizontal(80)"
+      boundingObject DEF WALL Shape {
+        appearance PBRAppearance {
+          metalness 0
+        }
+        geometry DEF wall_geometry Box {
+          size 0.168 0.012 0.05
+        }
+      }
+    }
+    Solid {
+      translation 0.9 -1.17 0.025
+      rotation 0 0 1 3.14159
+      children [
+        DEF WALL Shape {
+          appearance PBRAppearance {
+            metalness 0
+          }
+          geometry DEF wall_geometry Box {
+            size 0.168 0.012 0.05
+          }
+        }
+      ]
+      name "wall-horizontal(81)"
+      boundingObject DEF WALL Shape {
+        appearance PBRAppearance {
+          metalness 0
+        }
+        geometry DEF wall_geometry Box {
+          size 0.168 0.012 0.05
+        }
+      }
+    }
+    Solid {
+      translation 1.08 -1.17 0.025
+      rotation 0 0 1 3.14159
+      children [
+        DEF WALL Shape {
+          appearance PBRAppearance {
+            metalness 0
+          }
+          geometry DEF wall_geometry Box {
+            size 0.168 0.012 0.05
+          }
+        }
+      ]
+      name "wall-horizontal(82)"
       boundingObject DEF WALL Shape {
         appearance PBRAppearance {
           metalness 0
@@ -4222,6 +5487,305 @@ Group {
       }
     }
     Solid {
+      translation 1.17 -0.9 0.025
+      rotation 0 0 -1 -1.5707953071795862
+      children [
+        DEF WALL Shape {
+          appearance PBRAppearance {
+            metalness 0
+          }
+          geometry DEF wall_geometry Box {
+            size 0.168 0.012 0.05
+          }
+        }
+      ]
+      name "wall-vertical(79)"
+      boundingObject DEF WALL Shape {
+        appearance PBRAppearance {
+          metalness 0
+        }
+        geometry DEF wall_geometry Box {
+          size 0.168 0.012 0.05
+        }
+      }
+    }
+    Solid {
+      translation 1.17 -1.08 0.025
+      rotation 0 0 -1 -1.5707953071795862
+      children [
+        DEF WALL Shape {
+          appearance PBRAppearance {
+            metalness 0
+          }
+          geometry DEF wall_geometry Box {
+            size 0.168 0.012 0.05
+          }
+        }
+      ]
+      name "wall-vertical(80)"
+      boundingObject DEF WALL Shape {
+        appearance PBRAppearance {
+          metalness 0
+        }
+        geometry DEF wall_geometry Box {
+          size 0.168 0.012 0.05
+        }
+      }
+    }
+    Solid {
+      translation 1.17 -0.72 0.025
+      rotation 0 0 -1 -1.5707953071795862
+      children [
+        DEF WALL Shape {
+          appearance PBRAppearance {
+            metalness 0
+          }
+          geometry DEF wall_geometry Box {
+            size 0.168 0.012 0.05
+          }
+        }
+      ]
+      name "wall-vertical(81)"
+      boundingObject DEF WALL Shape {
+        appearance PBRAppearance {
+          metalness 0
+        }
+        geometry DEF wall_geometry Box {
+          size 0.168 0.012 0.05
+        }
+      }
+    }
+    Solid {
+      translation 1.17 -0.54 0.025
+      rotation 0 0 -1 -1.5707953071795862
+      children [
+        DEF WALL Shape {
+          appearance PBRAppearance {
+            metalness 0
+          }
+          geometry DEF wall_geometry Box {
+            size 0.168 0.012 0.05
+          }
+        }
+      ]
+      name "wall-vertical(82)"
+      boundingObject DEF WALL Shape {
+        appearance PBRAppearance {
+          metalness 0
+        }
+        geometry DEF wall_geometry Box {
+          size 0.168 0.012 0.05
+        }
+      }
+    }
+    Solid {
+      translation 1.17 -0.36 0.025
+      rotation 0 0 -1 -1.5707953071795862
+      children [
+        DEF WALL Shape {
+          appearance PBRAppearance {
+            metalness 0
+          }
+          geometry DEF wall_geometry Box {
+            size 0.168 0.012 0.05
+          }
+        }
+      ]
+      name "wall-vertical(83)"
+      boundingObject DEF WALL Shape {
+        appearance PBRAppearance {
+          metalness 0
+        }
+        geometry DEF wall_geometry Box {
+          size 0.168 0.012 0.05
+        }
+      }
+    }
+    Solid {
+      translation 1.17 -0.18 0.025
+      rotation 0 0 -1 -1.5707953071795862
+      children [
+        DEF WALL Shape {
+          appearance PBRAppearance {
+            metalness 0
+          }
+          geometry DEF wall_geometry Box {
+            size 0.168 0.012 0.05
+          }
+        }
+      ]
+      name "wall-vertical(84)"
+      boundingObject DEF WALL Shape {
+        appearance PBRAppearance {
+          metalness 0
+        }
+        geometry DEF wall_geometry Box {
+          size 0.168 0.012 0.05
+        }
+      }
+    }
+    Solid {
+      translation 1.17 -5.19723e-15 0.025
+      rotation 0 0 -1 -1.5707953071795862
+      children [
+        DEF WALL Shape {
+          appearance PBRAppearance {
+            metalness 0
+          }
+          geometry DEF wall_geometry Box {
+            size 0.168 0.012 0.05
+          }
+        }
+      ]
+      name "wall-vertical(85)"
+      boundingObject DEF WALL Shape {
+        appearance PBRAppearance {
+          metalness 0
+        }
+        geometry DEF wall_geometry Box {
+          size 0.168 0.012 0.05
+        }
+      }
+    }
+    Solid {
+      translation 1.17 0.18 0.025
+      rotation 0 0 -1 -1.5707953071795862
+      children [
+        DEF WALL Shape {
+          appearance PBRAppearance {
+            metalness 0
+          }
+          geometry DEF wall_geometry Box {
+            size 0.168 0.012 0.05
+          }
+        }
+      ]
+      name "wall-vertical(86)"
+      boundingObject DEF WALL Shape {
+        appearance PBRAppearance {
+          metalness 0
+        }
+        geometry DEF wall_geometry Box {
+          size 0.168 0.012 0.05
+        }
+      }
+    }
+    Solid {
+      translation 1.17 0.36 0.025
+      rotation 0 0 -1 -1.5707953071795862
+      children [
+        DEF WALL Shape {
+          appearance PBRAppearance {
+            metalness 0
+          }
+          geometry DEF wall_geometry Box {
+            size 0.168 0.012 0.05
+          }
+        }
+      ]
+      name "wall-vertical(87)"
+      boundingObject DEF WALL Shape {
+        appearance PBRAppearance {
+          metalness 0
+        }
+        geometry DEF wall_geometry Box {
+          size 0.168 0.012 0.05
+        }
+      }
+    }
+    Solid {
+      translation 1.17 0.54 0.025
+      rotation 0 0 -1 -1.5707953071795862
+      children [
+        DEF WALL Shape {
+          appearance PBRAppearance {
+            metalness 0
+          }
+          geometry DEF wall_geometry Box {
+            size 0.168 0.012 0.05
+          }
+        }
+      ]
+      name "wall-vertical(88)"
+      boundingObject DEF WALL Shape {
+        appearance PBRAppearance {
+          metalness 0
+        }
+        geometry DEF wall_geometry Box {
+          size 0.168 0.012 0.05
+        }
+      }
+    }
+    Solid {
+      translation 1.17 0.72 0.025
+      rotation 0 0 -1 -1.5707953071795862
+      children [
+        DEF WALL Shape {
+          appearance PBRAppearance {
+            metalness 0
+          }
+          geometry DEF wall_geometry Box {
+            size 0.168 0.012 0.05
+          }
+        }
+      ]
+      name "wall-vertical(89)"
+      boundingObject DEF WALL Shape {
+        appearance PBRAppearance {
+          metalness 0
+        }
+        geometry DEF wall_geometry Box {
+          size 0.168 0.012 0.05
+        }
+      }
+    }
+    Solid {
+      translation 1.17 0.9 0.025
+      rotation 0 0 -1 -1.5707953071795862
+      children [
+        DEF WALL Shape {
+          appearance PBRAppearance {
+            metalness 0
+          }
+          geometry DEF wall_geometry Box {
+            size 0.168 0.012 0.05
+          }
+        }
+      ]
+      name "wall-vertical(90)"
+      boundingObject DEF WALL Shape {
+        appearance PBRAppearance {
+          metalness 0
+        }
+        geometry DEF wall_geometry Box {
+          size 0.168 0.012 0.05
+        }
+      }
+    }
+    Solid {
+      translation 1.17 1.08 0.025
+      rotation 0 0 -1 -1.5707953071795862
+      children [
+        DEF WALL Shape {
+          appearance PBRAppearance {
+            metalness 0
+          }
+          geometry DEF wall_geometry Box {
+            size 0.168 0.012 0.05
+          }
+        }
+      ]
+      name "wall-vertical(91)"
+      boundingObject DEF WALL Shape {
+        appearance PBRAppearance {
+          metalness 0
+        }
+        geometry DEF wall_geometry Box {
+          size 0.168 0.012 0.05
+        }
+      }
+    }
+    Solid {
       translation 0.63 -0.9 0.025
       rotation 0 0 -1 -1.5707953071795862
       children [
@@ -5270,6 +6834,305 @@ Group {
         }
       ]
       name "wall-vertical(45)"
+      boundingObject DEF WALL Shape {
+        appearance PBRAppearance {
+          metalness 0
+        }
+        geometry DEF wall_geometry Box {
+          size 0.168 0.012 0.05
+        }
+      }
+    }
+    Solid {
+      translation -1.17 0.72 0.025
+      rotation 0 0 -1 -1.5707953071795862
+      children [
+        DEF WALL Shape {
+          appearance PBRAppearance {
+            metalness 0
+          }
+          geometry DEF wall_geometry Box {
+            size 0.168 0.012 0.05
+          }
+        }
+      ]
+      name "wall-vertical(66)"
+      boundingObject DEF WALL Shape {
+        appearance PBRAppearance {
+          metalness 0
+        }
+        geometry DEF wall_geometry Box {
+          size 0.168 0.012 0.05
+        }
+      }
+    }
+    Solid {
+      translation -1.17 0.54 0.025
+      rotation 0 0 -1 -1.5707953071795862
+      children [
+        DEF WALL Shape {
+          appearance PBRAppearance {
+            metalness 0
+          }
+          geometry DEF wall_geometry Box {
+            size 0.168 0.012 0.05
+          }
+        }
+      ]
+      name "wall-vertical(69)"
+      boundingObject DEF WALL Shape {
+        appearance PBRAppearance {
+          metalness 0
+        }
+        geometry DEF wall_geometry Box {
+          size 0.168 0.012 0.05
+        }
+      }
+    }
+    Solid {
+      translation -1.17 0.36 0.025
+      rotation 0 0 -1 -1.5707953071795862
+      children [
+        DEF WALL Shape {
+          appearance PBRAppearance {
+            metalness 0
+          }
+          geometry DEF wall_geometry Box {
+            size 0.168 0.012 0.05
+          }
+        }
+      ]
+      name "wall-vertical(70)"
+      boundingObject DEF WALL Shape {
+        appearance PBRAppearance {
+          metalness 0
+        }
+        geometry DEF wall_geometry Box {
+          size 0.168 0.012 0.05
+        }
+      }
+    }
+    Solid {
+      translation -1.17 0.18 0.025
+      rotation 0 0 -1 -1.5707953071795862
+      children [
+        DEF WALL Shape {
+          appearance PBRAppearance {
+            metalness 0
+          }
+          geometry DEF wall_geometry Box {
+            size 0.168 0.012 0.05
+          }
+        }
+      ]
+      name "wall-vertical(71)"
+      boundingObject DEF WALL Shape {
+        appearance PBRAppearance {
+          metalness 0
+        }
+        geometry DEF wall_geometry Box {
+          size 0.168 0.012 0.05
+        }
+      }
+    }
+    Solid {
+      translation -1.17 -5.19723e-15 0.025
+      rotation 0 0 -1 -1.5707953071795862
+      children [
+        DEF WALL Shape {
+          appearance PBRAppearance {
+            metalness 0
+          }
+          geometry DEF wall_geometry Box {
+            size 0.168 0.012 0.05
+          }
+        }
+      ]
+      name "wall-vertical(72)"
+      boundingObject DEF WALL Shape {
+        appearance PBRAppearance {
+          metalness 0
+        }
+        geometry DEF wall_geometry Box {
+          size 0.168 0.012 0.05
+        }
+      }
+    }
+    Solid {
+      translation -1.17 -0.18 0.025
+      rotation 0 0 -1 -1.5707953071795862
+      children [
+        DEF WALL Shape {
+          appearance PBRAppearance {
+            metalness 0
+          }
+          geometry DEF wall_geometry Box {
+            size 0.168 0.012 0.05
+          }
+        }
+      ]
+      name "wall-vertical(73)"
+      boundingObject DEF WALL Shape {
+        appearance PBRAppearance {
+          metalness 0
+        }
+        geometry DEF wall_geometry Box {
+          size 0.168 0.012 0.05
+        }
+      }
+    }
+    Solid {
+      translation -1.17 -0.36 0.025
+      rotation 0 0 -1 -1.5707953071795862
+      children [
+        DEF WALL Shape {
+          appearance PBRAppearance {
+            metalness 0
+          }
+          geometry DEF wall_geometry Box {
+            size 0.168 0.012 0.05
+          }
+        }
+      ]
+      name "wall-vertical(74)"
+      boundingObject DEF WALL Shape {
+        appearance PBRAppearance {
+          metalness 0
+        }
+        geometry DEF wall_geometry Box {
+          size 0.168 0.012 0.05
+        }
+      }
+    }
+    Solid {
+      translation -1.17 -0.54 0.025
+      rotation 0 0 -1 -1.5707953071795862
+      children [
+        DEF WALL Shape {
+          appearance PBRAppearance {
+            metalness 0
+          }
+          geometry DEF wall_geometry Box {
+            size 0.168 0.012 0.05
+          }
+        }
+      ]
+      name "wall-vertical(75)"
+      boundingObject DEF WALL Shape {
+        appearance PBRAppearance {
+          metalness 0
+        }
+        geometry DEF wall_geometry Box {
+          size 0.168 0.012 0.05
+        }
+      }
+    }
+    Solid {
+      translation -1.17 -0.72 0.025
+      rotation 0 0 -1 -1.5707953071795862
+      children [
+        DEF WALL Shape {
+          appearance PBRAppearance {
+            metalness 0
+          }
+          geometry DEF wall_geometry Box {
+            size 0.168 0.012 0.05
+          }
+        }
+      ]
+      name "wall-vertical(76)"
+      boundingObject DEF WALL Shape {
+        appearance PBRAppearance {
+          metalness 0
+        }
+        geometry DEF wall_geometry Box {
+          size 0.168 0.012 0.05
+        }
+      }
+    }
+    Solid {
+      translation -1.17 -0.9 0.025
+      rotation 0 0 -1 -1.5707953071795862
+      children [
+        DEF WALL Shape {
+          appearance PBRAppearance {
+            metalness 0
+          }
+          geometry DEF wall_geometry Box {
+            size 0.168 0.012 0.05
+          }
+        }
+      ]
+      name "wall-vertical(77)"
+      boundingObject DEF WALL Shape {
+        appearance PBRAppearance {
+          metalness 0
+        }
+        geometry DEF wall_geometry Box {
+          size 0.168 0.012 0.05
+        }
+      }
+    }
+    Solid {
+      translation -1.17 -1.08 0.025
+      rotation 0 0 -1 -1.5707953071795862
+      children [
+        DEF WALL Shape {
+          appearance PBRAppearance {
+            metalness 0
+          }
+          geometry DEF wall_geometry Box {
+            size 0.168 0.012 0.05
+          }
+        }
+      ]
+      name "wall-vertical(78)"
+      boundingObject DEF WALL Shape {
+        appearance PBRAppearance {
+          metalness 0
+        }
+        geometry DEF wall_geometry Box {
+          size 0.168 0.012 0.05
+        }
+      }
+    }
+    Solid {
+      translation -1.17 0.9 0.025
+      rotation 0 0 -1 -1.5707953071795862
+      children [
+        DEF WALL Shape {
+          appearance PBRAppearance {
+            metalness 0
+          }
+          geometry DEF wall_geometry Box {
+            size 0.168 0.012 0.05
+          }
+        }
+      ]
+      name "wall-vertical(67)"
+      boundingObject DEF WALL Shape {
+        appearance PBRAppearance {
+          metalness 0
+        }
+        geometry DEF wall_geometry Box {
+          size 0.168 0.012 0.05
+        }
+      }
+    }
+    Solid {
+      translation -1.17 1.08 0.025
+      rotation 0 0 -1 -1.5707953071795862
+      children [
+        DEF WALL Shape {
+          appearance PBRAppearance {
+            metalness 0
+          }
+          geometry DEF wall_geometry Box {
+            size 0.168 0.012 0.05
+          }
+        }
+      ]
+      name "wall-vertical(68)"
       boundingObject DEF WALL Shape {
         appearance PBRAppearance {
           metalness 0

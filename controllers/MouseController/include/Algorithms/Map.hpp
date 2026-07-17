@@ -3,6 +3,7 @@
 #pragma once
 #include <cstdint>
 #include <array>
+#include "../globals.hpp"
 
 
 //north east south west
@@ -32,13 +33,14 @@ class Map{
         uint8_t x2;
         uint8_t y2;
 
-        std::array<std::array<Tile,16>,16> maze = {{0}};
+        std::array<std::array<Tile,13>,13> maze = {{0}};
 
         void putWall(int x, int y, Direction dir, WallState state) ;
         void printMaze() const;
     public:
         std::array<int,2>  translateCoordinates(int x, int y);
         void putWalls(int x, int y, WallState north, WallState east, WallState south, WallState west);
+        void putOuterWalls();
         const std::array<WallState,4> getWallState(int x, int y) const;
         
 

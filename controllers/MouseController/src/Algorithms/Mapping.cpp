@@ -14,7 +14,7 @@ constexpr float QUADRANT_ANGLE_RAD = 1.57f; // ~90 degrees in radians
 constexpr float WALL_DETECTION_THRESHOLD_MM = 900.0f;
 
 
-bool first = true;
+bool firstStep = true;
 bool exploreStartingTile = true;
 void Mapping::step(){
     // motionController.setTargetVelocity(4);
@@ -41,9 +41,13 @@ void Mapping::step(){
         //  
     // } 
 
+    if (firstStep) {
+        map.putOuterWalls();
+    }
+    
 
     if(exploreStartingTile){  
-        if(debugMode) std::cout << "I'm exploring.\n";
+        if(debugMode[0]) std::cout << "I'm exploring.\n";
         enqueCommandCallback({4,1.57,0,0,nullptr});
         // enqueCommandCallback({2,3.14,0,0,nullptr});
         // enqueCommandCallback({2,-1.57,0,0,nullptr});
@@ -54,6 +58,10 @@ void Mapping::step(){
 
     updateMap();
 
+    if (firstStep) {
+        firstStep = false;
+    }
+    
 }
 
 void Mapping::rightHandAlgorithm(){
@@ -143,9 +151,11 @@ void Mapping::updateMap(){
         static_cast<int>(std::round((spatialData.y )/GRID_CELL_SIZE))
     };
 
-    float distanceFromCenterX = currentGridCoordinates[0]*18 - spatialData.x;
-    float distanceFromCenterY = currentGridCoordinates[1]*18 - spatialData.y;
+    float distanceFromCenterX = currentGridCoordinates[0]*18 - spatialData.x; //Distance from center of the current cell?
+    float distanceFromCenterY = currentGridCoordinates[1]*18 - spatialData.y; //Distance from center of the current cell?
 
+    // std::cout << "Distance From Center [X]: " << distanceFromCenterX << "\n";
+    // std::cout << "Distance From Center [Y]: " << distanceFromCenterY << "\n";
 
     bool closeToEdge = false;
  
@@ -168,9 +178,9 @@ void Mapping::updateMap(){
     bool triggerForwardMapping = movedToNewCell && closeToEdge; 
     bool triggerTurnMapping    = turned90Deg && closeToEdge;
     
-    // if(first){
+    // if(firstStep){
     //     mapForwardCell(currentGridCoordinates);
-    //     first = false;
+    //     firstStep = false;
     // }
 
 
