@@ -84,7 +84,8 @@ void PositionEstimator::updateAngleEstimationBasedOnEncoders() {
 void PositionEstimator::correctAngleEstimationBasedOnDistanceSensors() {
 
     constexpr float WALL_DETECTION_THRESHOLD_MM = 650.0f;
-    constexpr float epsilon = 2.5f;
+    constexpr float angled_epsilon = 2.5f;
+    constexpr float forward_epsilon = 2.5f;
 
 
     std::array<float,4> readings = sensors.getDistanceReadings();
@@ -93,6 +94,10 @@ void PositionEstimator::correctAngleEstimationBasedOnDistanceSensors() {
     float rightAngledReading = readings[1];
     float leftAngledReading = readings[2];
 
+    if (debugMode[3]) {
+        std::cout << "\nSensor readings [LA|LF|RF|RL]: " << leftAngledReading << " | " << leftForwardReading << " | " << rightForwardReading << " | " << rightAngledReading << std::endl;
+    } 
+
     if(rotating)return;
     bool wallsOnBothSidesPresent = leftAngledReading < WALL_DETECTION_THRESHOLD_MM &&  rightAngledReading < WALL_DETECTION_THRESHOLD_MM;
     bool wallInFrontPresent = leftForwardReading < WALL_DETECTION_THRESHOLD_MM &&  rightForwardReading < WALL_DETECTION_THRESHOLD_MM;
@@ -100,25 +105,28 @@ void PositionEstimator::correctAngleEstimationBasedOnDistanceSensors() {
 
 
     if(wallsOnBothSidesPresent && !wallInFrontPresent){
-        if(leftAngledReading - rightAngledReading > epsilon){
+        if(leftAngledReading - rightAngledReading > angled_epsilon){
             spatialData.angle  = spatialData.angle  + 0.005;
         }
-        if(rightAngledReading - leftAngledReading > epsilon){
+        if(rightAngledReading - leftAngledReading > angled_epsilon){
             spatialData.angle  = spatialData.angle  - 0.005;
         }
-        return;
     }
-
-    if(rightAngledReading < (330)  && !wallInFrontPresent){
+    else if (wallInFrontPresent && !wallsOnBothSidesPresent){
+        if (fabs(leftForwardReading - rightForwardReading) > forward_epsilon){
+            if(leftForwardReading > rightForwardReading){
+                spatialData.angle  = spatialData.angle  - 0.005;
+            }
+            else if (rightForwardReading > leftForwardReading){
+                spatialData.angle  = spatialData.angle  + 0.005;
+            }
+        }
+    }
+    else if(rightAngledReading < (475)  && !wallInFrontPresent){
         spatialData.angle  = spatialData.angle  + 0.005;
-        return;
     }
-
-    if(leftAngledReading < (330)  && !wallInFrontPresent ){
-        spatialData.angle  = spatialData.angle  - 0.005;
-        
+    else if(leftAngledReading < (475)  && !wallInFrontPresent ){
+        spatialData.angle  = spatialData.angle  - 0.005;   
     }
-
-
 };
 

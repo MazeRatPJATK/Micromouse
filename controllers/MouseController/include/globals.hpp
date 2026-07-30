@@ -7,4 +7,7 @@ extern float distanceBetweenWheels;
 extern int timeStep;
 extern bool rotating;
 extern bool displayMap;
-extern bool debugMode[2];
+extern bool debugMode[4];
+extern float targetX_debug;
+extern float targetY_debug;
+extern float targetAngle_debug;

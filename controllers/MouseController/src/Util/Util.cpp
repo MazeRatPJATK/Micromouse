@@ -33,3 +33,27 @@ float snapToRightAngle(float angle)
 
     return snappedAngle;
 }
+
+float snapTargetAngle(float targetAngle) {
+    if (abs(targetAngle) < 0.01f) {
+        targetAngle = 0.0f;
+    }
+    else if (abs(targetAngle - 1.57f) < 0.01f) {
+        if (targetAngle < 0.0f) {
+            targetAngle = -1.57f;
+        }
+        else {
+            targetAngle = 1.57f;
+        }
+    }
+    else if (abs(targetAngle - 3.13f) < 0.01f) {
+        if (targetAngle < 0.0f) {
+            targetAngle = -3.13f;
+        }
+        else {
+            targetAngle = 3.13f;
+        }
+    }
+    
+    return targetAngle;
+}

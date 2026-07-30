@@ -48,10 +48,13 @@ void Mapping::step(){
 
     if(exploreStartingTile){  
         if(debugMode[0]) std::cout << "I'm exploring.\n";
-        enqueCommandCallback({4,1.57,0,0,nullptr});
+        // enqueCommandCallback({4,1.57,0,0,nullptr});
         // enqueCommandCallback({2,3.14,0,0,nullptr});
         // enqueCommandCallback({2,-1.57,0,0,nullptr});
-        enqueCommandCallback({4, 0, 0, 0, [this]() { this->rightHandAlgorithm(); }}); 
+        // enqueCommandCallback({4, 1.57, 0, 0, [this]() { this->rightHandAlgorithm(); }}); 
+        
+        mapForwardCell(translateToGridCoordinate(spatialData.x, spatialData.y));
+        enqueCommandCallback({4, 1.57, 0, 0, [this]() { this->rightHandAlgorithm(); }}); 
         exploreStartingTile = false;
     }
 
@@ -86,44 +89,44 @@ void Mapping::rightHandAlgorithm(){
         // std::cout << "no right wall" << std::endl;
         float targetAngle = normalizeAngle(snapToRightAngle(spatialData.angle) + 1.57f);
         enqueCommandCallback({
-    4,
-    targetAngle,
-    spatialData.x,
-    spatialData.y,
-    [this, targetAngle]()
-    {
-        // std::cout << " \n embedded lambda runs \n\n ===== \n" << std::endl;
-        auto [x, y] = getNextCellTarget();
-
-        enqueCommandCallback({
             4,
             targetAngle,
-            x,
-            y,
-            [this]() { this->rightHandAlgorithm(); }
+            spatialData.x,
+            spatialData.y,
+            [this, targetAngle]()
+            {
+                // std::cout << " \n embedded lambda runs \n\n ===== \n" << std::endl;
+                auto [x, y] = getNextCellTarget();
+
+                enqueCommandCallback({
+                    4,
+                    targetAngle,
+                    x,
+                    y,
+                    [this]() { this->rightHandAlgorithm(); }
+                });
+            }
         });
     }
-    });
-    }
- else if (wallInFront && wallOnRight)
-{
-       float targetAngle = normalizeAngle(snapToRightAngle(spatialData.angle) - 1.57f);
-        enqueCommandCallback({
-    4,
-    targetAngle,
-    spatialData.x,
-    spatialData.y,
-             [this]() { this->rightHandAlgorithm(); }
-    });
+    else if (wallInFront && wallOnRight)
+    {
+        float targetAngle = snapTargetAngle(normalizeAngle(snapToRightAngle(spatialData.angle) - 1.57f));
+            enqueCommandCallback({
+        4,
+        targetAngle,
+        spatialData.x,
+        spatialData.y,
+                [this]() { this->rightHandAlgorithm(); }
+        });
+        
     
-   
     }
     else{
         auto [x, y] = getNextCellTarget();
         enqueCommandCallback({4,snapToRightAngle(spatialData.angle), x, y, [this]() { this->rightHandAlgorithm(); }});
     } 
 
-
+    
 }
 
 
@@ -213,7 +216,7 @@ void Mapping::mapForwardCell(const std::array<int,2>& currentCell){
         localWalls[1] = (rightAngledReading < WALL_DETECTION_THRESHOLD_MM) ? PRESENT : ABSENT;
 
         if(leftForwardReading < WALL_DETECTION_THRESHOLD_MM){ 
-            localWalls[2] = PRESENT ;
+            localWalls[2] = PRESENT;
             localWalls[3] = UNKNOWN; 
             localWalls[1] = UNKNOWN;}
         else{
@@ -225,7 +228,7 @@ void Mapping::mapForwardCell(const std::array<int,2>& currentCell){
 
         int forwardSquareX = currentCell[0] + static_cast<int>(std::round(sin(spatialData.angle)));
         int forwardSquareY = currentCell[1] + static_cast<int>(std::round(cos(spatialData.angle)));
-        map.putWalls(forwardSquareX ,forwardSquareY, worldWalls[0], worldWalls[1],worldWalls[2], worldWalls[3] );
+        map.putWalls(forwardSquareX, forwardSquareY, worldWalls[0], worldWalls[1], worldWalls[2], worldWalls[3] );
 
         
 

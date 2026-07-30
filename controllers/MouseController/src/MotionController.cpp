@@ -11,6 +11,26 @@ void MotionController::setTargetVelocity(float velocity){
 
 void MotionController::setTargetAngle(float angle){
     targetAngle = angle;
+
+    // if (abs(targetAngle) < 0.01f) {
+    //     targetAngle = 0.0f;
+    // }
+    // else if (abs(targetAngle - 1.57f) < 0.01f) {
+    //     if (targetAngle < 0.0f) {
+    //         targetAngle = -1.57f;
+    //     }
+    //     else {
+    //         targetAngle = 1.57f;
+    //     }
+    // }
+    // else if (abs(targetAngle - 3.13f) < 0.01f) {
+    //     if (targetAngle < 0.0f) {
+    //         targetAngle = -3.13f;
+    //     }
+    //     else {
+    //         targetAngle = 3.13f;
+    //     }
+    // }
 }
 
 void MotionController::calculateCurrentVelocity(){
@@ -58,26 +78,7 @@ void MotionController::adjustAngle() {
 
     float current = spatialData.angle;
     float error = normalizeAngle(targetAngle - current);
-//0.000796344
-    if (abs(targetAngle) < 0.01f) {
-        targetAngle = 0.0f;
-    }
-    else if (abs(targetAngle - 1.57f) < 0.01f) {
-        if (targetAngle < 0.0f) {
-            targetAngle = -1.57f;
-        }
-        else {
-            targetAngle = 1.57f;
-        }
-    }
-    else if (abs(targetAngle - 3.13f) < 0.01f) {
-        if (targetAngle < 0.0f) {
-            targetAngle = -3.13f;
-        }
-        else {
-            targetAngle = 3.13f;
-        }
-    }
+    //0.000796344
 
     if(debugMode[0]) std::cout << "\n.\nTarget Angle " << targetAngle << "\n";
     if(debugMode[0]) std::cout << "Current Angle " << current << "\n";

@@ -23,7 +23,6 @@ Controller::Controller(ISensors& sensors, MotionController& motionController)
 
       solver(),
       positionEstimator(sensors)
-
 {
     controllerState = ControllerState::IDLE;
 }
@@ -74,6 +73,14 @@ void Controller::applyCommands(){
    
     }
 
+    targetX_debug = std::round(cmd.targetX) / 18.0f;
+    targetY_debug = std::round(cmd.targetY) / 18.0f;
+    targetAngle_debug = cmd.targetAngle;
+
+    if(debugMode[2]) {
+        std::cout << "\n[Current command targets] X: " << targetX_debug << " Y: " << targetY_debug << " Angle: " << targetAngle_debug << "\n";
+    }
+
     return;
 }
 
@@ -85,11 +92,15 @@ void Controller::initNewCommand(Command& cmd){
 bool Controller::hasFinishedCommand(Command& cmd){
     if(debugMode[0]) std::cout << "I'm finished.\n";
     float epsilon = 0.8f;
-    float angleEpsilon = 0.01f;
+    float angleEpsilon = 0.012f;
     bool x_ok = std::fabs(spatialData.x - cmd.targetX) < epsilon;
     bool y_ok = std::fabs(spatialData.y - cmd.targetY) < epsilon;
     // bool angle_ok = std::fabs(spatialData.angle - cmd.targetAngle) < angleEpsilon;
     bool angle_ok = std::fabs(normalizeAngle(spatialData.angle - cmd.targetAngle)) < angleEpsilon;
+
+    if(debugMode[2]) {
+        std::cout << "\n[Current command checks] X: " << std::fabs(spatialData.x - cmd.targetX) << ((x_ok) ? " [TRUE]" : " [FALSE]") << " Y: " << std::fabs(spatialData.y - cmd.targetY) << ((y_ok) ? " [TRUE]" : " [FALSE]") << " Angle: " << std::fabs(normalizeAngle(spatialData.angle - cmd.targetAngle)) << ((angle_ok) ? " [TRUE]" : " [FALSE]") << "\n";
+    }
 
     // if (x_ok && y_ok && angle_ok) std::cout << " \n\n\n\n\n\n\n\n\n\n\n\n ========= \n\n\n finished cmd \n ========= \n\n\n" << std::endl;
     
