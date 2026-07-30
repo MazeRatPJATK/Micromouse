@@ -29,7 +29,9 @@ private:
         void mapForwardCell(const std::array<int,2>& currentCell);
         std::array<int,2> translateToGridCoordinate(float x, float y);
 
+        void determineAndCallAlgorithm();
         void rightHandAlgorithm();
+        void leftHandAlgorithm();
         
         std::pair<float,float> getNextCellTarget();
 

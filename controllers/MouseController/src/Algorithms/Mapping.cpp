@@ -16,6 +16,9 @@ constexpr float WALL_DETECTION_THRESHOLD_MM = 900.0f;
 
 bool firstStep = true;
 bool exploreStartingTile = true;
+bool movedFromStartingTile = false;
+bool returnedToStartSquare = false;
+
 void Mapping::step(){
     // motionController.setTargetVelocity(4);
     
@@ -54,7 +57,7 @@ void Mapping::step(){
         // enqueCommandCallback({4, 1.57, 0, 0, [this]() { this->rightHandAlgorithm(); }}); 
         
         mapForwardCell(translateToGridCoordinate(spatialData.x, spatialData.y));
-        enqueCommandCallback({4, 1.57, 0, 0, [this]() { this->rightHandAlgorithm(); }}); 
+        enqueCommandCallback({4, 1.57, 0, 0, [this]() { this->leftHandAlgorithm(); }}); 
         exploreStartingTile = false;
     }
 
@@ -64,7 +67,21 @@ void Mapping::step(){
     if (firstStep) {
         firstStep = false;
     }
+
+    if (movedFromStartingTile == false && (std::round(spatialData.x / GRID_CELL_SIZE) != 0 || std::round(spatialData.y / GRID_CELL_SIZE) != 0)) {
+        movedFromStartingTile = true;
+        std::cout << "Moved from starting tile." << std::endl;
+    }
     
+}
+
+void Mapping::determineAndCallAlgorithm() {
+    if (returnedToStartSquare) {
+        leftHandAlgorithm();
+    }
+    else {
+        rightHandAlgorithm();
+    }
 }
 
 void Mapping::rightHandAlgorithm(){
@@ -103,7 +120,7 @@ void Mapping::rightHandAlgorithm(){
                     targetAngle,
                     x,
                     y,
-                    [this]() { this->rightHandAlgorithm(); }
+                    [this]() { this->determineAndCallAlgorithm(); }
                 });
             }
         });
@@ -116,19 +133,83 @@ void Mapping::rightHandAlgorithm(){
         targetAngle,
         spatialData.x,
         spatialData.y,
-                [this]() { this->rightHandAlgorithm(); }
+                [this]() { this->determineAndCallAlgorithm(); }
         });
         
     
     }
     else{
         auto [x, y] = getNextCellTarget();
-        enqueCommandCallback({4,snapToRightAngle(spatialData.angle), x, y, [this]() { this->rightHandAlgorithm(); }});
+        enqueCommandCallback({4,snapToRightAngle(spatialData.angle), x, y, [this]() { this->determineAndCallAlgorithm(); }});
+    } 
+
+    if (currentGridCoordinates[0] == 0 && currentGridCoordinates[1] == 0 && movedFromStartingTile == true) {
+        returnedToStartSquare = true;
+        std::cout << "Returned to start square." << std::endl;
+    }
+    
+}
+
+void Mapping::leftHandAlgorithm(){
+    std::array<int,2> currentGridCoordinates = {
+        static_cast<int>(std::round((spatialData.x) / GRID_CELL_SIZE)),
+        static_cast<int>(std::round((spatialData.y) / GRID_CELL_SIZE))
+    };
+
+    std::array<WallState, 4> walls = map.getWallState(
+        currentGridCoordinates[0], currentGridCoordinates[1]
+    );
+    walls = getLocalWalls(walls);
+
+    bool wallInFront = (walls[0] == PRESENT);
+    bool wallOnRight = (walls[1] == PRESENT);
+    bool wallOnLeft  = (walls[3] == PRESENT);
+    // std::cout << "f/r/l: "  << (char)walls[0] << (char)walls[1] << (char)walls[3] << std::endl;
+
+    
+
+    if(!wallOnLeft){
+        float targetAngle = normalizeAngle(snapToRightAngle(spatialData.angle) - 1.57f);
+        enqueCommandCallback({
+            4,
+            targetAngle,
+            spatialData.x,
+            spatialData.y,
+            [this, targetAngle]()
+            {
+                // std::cout << " \n embedded lambda runs \n\n ===== \n" << std::endl;
+                auto [x, y] = getNextCellTarget();
+
+                enqueCommandCallback({
+                    4,
+                    targetAngle,
+                    x,
+                    y,
+                    [this]() { this->leftHandAlgorithm(); }
+                });
+            }
+        });
+    }
+    else if (wallInFront && wallOnLeft)
+    {
+        float targetAngle = snapTargetAngle(normalizeAngle(snapToRightAngle(spatialData.angle) + 1.57f));
+            enqueCommandCallback({
+        4,
+        targetAngle,
+        spatialData.x,
+        spatialData.y,
+                [this]() { this->leftHandAlgorithm(); }
+        });
+        
+    
+    }
+    else{
+        auto [x, y] = getNextCellTarget();
+        enqueCommandCallback({4,snapToRightAngle(spatialData.angle), x, y, [this]() { this->leftHandAlgorithm(); }});
     } 
 
     
 }
-
 
 std::pair<float, float> Mapping::getNextCellTarget() {
     float angle = spatialData.angle;
