@@ -17,7 +17,7 @@ constexpr float WALL_DETECTION_THRESHOLD_MM = 900.0f;
 bool firstStep = true;
 bool exploreStartingTile = true;
 bool movedFromStartingTile = false;
-bool returnedToStartSquare = false;
+int returnedToStartSquare = 0;
 
 void Mapping::step(){
     // motionController.setTargetVelocity(4);
@@ -57,7 +57,8 @@ void Mapping::step(){
         // enqueCommandCallback({4, 1.57, 0, 0, [this]() { this->rightHandAlgorithm(); }}); 
         
         mapForwardCell(translateToGridCoordinate(spatialData.x, spatialData.y));
-        enqueCommandCallback({4, 1.57, 0, 0, [this]() { this->leftHandAlgorithm(); }}); 
+        // enqueCommandCallback({4, 1.57, 0, 0, [this]() { this->leftHandAlgorithm(); }});
+        enqueCommandCallback({4, 1.57, 0, 0, [this]() { this->determineAndCallAlgorithm(); }});
         exploreStartingTile = false;
     }
 
@@ -76,11 +77,15 @@ void Mapping::step(){
 }
 
 void Mapping::determineAndCallAlgorithm() {
-    if (returnedToStartSquare) {
+    if (returnedToStartSquare == 0) {
+        rightHandAlgorithm();
+    }
+    else if (returnedToStartSquare == 3) {
         leftHandAlgorithm();
     }
     else {
-        rightHandAlgorithm();
+        std::cout << "[Mapping paused]" << std::endl;
+        enqueCommandCallback({0, 0, 0, 0, [this]() { this->determineAndCallAlgorithm(); }});
     }
 }
 
@@ -144,7 +149,8 @@ void Mapping::rightHandAlgorithm(){
     } 
 
     if (currentGridCoordinates[0] == 0 && currentGridCoordinates[1] == 0 && movedFromStartingTile == true) {
-        returnedToStartSquare = true;
+        returnedToStartSquare = 1;
+        movedFromStartingTile = false;
         std::cout << "Returned to start square." << std::endl;
     }
     
@@ -185,7 +191,7 @@ void Mapping::leftHandAlgorithm(){
                     targetAngle,
                     x,
                     y,
-                    [this]() { this->leftHandAlgorithm(); }
+                    [this]() { this->determineAndCallAlgorithm(); }
                 });
             }
         });
@@ -198,17 +204,20 @@ void Mapping::leftHandAlgorithm(){
         targetAngle,
         spatialData.x,
         spatialData.y,
-                [this]() { this->leftHandAlgorithm(); }
+                [this]() { this->determineAndCallAlgorithm(); }
         });
         
     
     }
     else{
         auto [x, y] = getNextCellTarget();
-        enqueCommandCallback({4,snapToRightAngle(spatialData.angle), x, y, [this]() { this->leftHandAlgorithm(); }});
+        enqueCommandCallback({4,snapToRightAngle(spatialData.angle), x, y, [this]() { this->determineAndCallAlgorithm(); }});
     } 
 
-    
+    if (currentGridCoordinates[0] == 0 && currentGridCoordinates[1] == 0 && movedFromStartingTile == true) {
+        returnedToStartSquare = 2;
+        std::cout << "Returned to start square for the second time." << std::endl;
+    }
 }
 
 std::pair<float, float> Mapping::getNextCellTarget() {
@@ -257,7 +266,7 @@ void Mapping::updateMap(){
 
 
     bool movedToNewCell = (previousGridCoordinates != currentGridCoordinates);
-    bool turned90Deg    = (std::abs(spatialData.angle - previousAngle) > (QUADRANT_ANGLE_RAD - 0.1f));
+    bool turned90Deg    = (std::abs(spatialData.angle - previousAngle) > (QUADRANT_ANGLE_RAD - 0.01f));
 
     bool triggerForwardMapping = movedToNewCell && closeToEdge; 
     bool triggerTurnMapping    = turned90Deg && closeToEdge;
@@ -268,7 +277,7 @@ void Mapping::updateMap(){
     // }
 
 
-    if ( triggerTurnMapping) {
+    if (triggerTurnMapping) {
 
         mapForwardCell(currentGridCoordinates);
         previousAngle = snapToRightAngle(spatialData.angle);
