@@ -1,7 +1,10 @@
-
 #include "../../include/Algorithms/Map.hpp"
 #define _USE_MATH_DEFINES
 #include <cmath>
+
+#ifdef USE_WEBOTS
+#include <iostream>
+#endif
 
 constexpr float GRID_CELL_SIZE = 18.0f;
 

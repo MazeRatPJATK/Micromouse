@@ -127,14 +127,14 @@ int main(void)
   MX_TIM4_Init();
   MX_USART3_UART_Init();
   /* USER CODE BEGIN 2 */
-#ifdef USE_WEBOTS
+  #ifdef USE_WEBOTS
     Robot *robot = new Robot();
     WebotsSensors sensors = WebotsSensors(robot);
     WebotsMotors motors = WebotsMotors(robot);
 
   #else
-      StmSensors sensors = StmSensors(&hadc1,&htim2);
-      StmMotors motors = StmMotors();
+    StmSensors sensors = StmSensors(&hadc1,&htim2);
+    StmMotors motors = StmMotors();
   #endif
     
   MotionController  motionController = MotionController(motors, sensors);
