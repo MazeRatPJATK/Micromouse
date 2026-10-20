@@ -4,7 +4,7 @@
 #define _USE_MATH_DEFINES
 #include <cmath>
 #include "../../include/Algorithms/Mapping.hpp"
-#include "./../include/Algorithms/Map.hpp"
+#include "../../include/Algorithms/Map.hpp"
 #include "../../include/globals.hpp"
 #include <array>
 #include "../../include/util/Util.hpp"
@@ -80,7 +80,7 @@ void Mapping::determineAndCallAlgorithm() {
     if (returnedToStartSquare == 0) {
         rightHandAlgorithm();
     }
-    else if (returnedToStartSquare == 3) {
+    else if (returnedToStartSquare == 1) {
         leftHandAlgorithm();
     }
     else {

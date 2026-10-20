@@ -2,7 +2,7 @@
 #include <cstdint>
 #include "Map.hpp"
 #include "../MotionController.hpp"
-#include "./Interfaces/ISensors.hpp"
+#include "../Interfaces/ISensors.hpp"
 #include <functional>
 #include "../util/Util.hpp"
 //this classes responsibility is to map explore the labytinth and put the data into the Map data structure

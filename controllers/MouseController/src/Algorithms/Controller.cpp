@@ -7,9 +7,9 @@
 #include <webots/DistanceSensor.hpp>
 
 //our own
-#include "../include/Algorithms/Controller.hpp"
-#include "../include/Interfaces/IMotors.hpp"
-#include "../include/Interfaces/ISensors.hpp"
+#include "../../include/Algorithms/Controller.hpp"
+#include "../../include/Interfaces/IMotors.hpp"
+#include "../../include/Interfaces/ISensors.hpp"
 
 
 
